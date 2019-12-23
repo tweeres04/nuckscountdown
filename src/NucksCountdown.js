@@ -7,6 +7,7 @@ import countdown from 'countdown';
 import idbKeyval from 'idb-keyval';
 
 import Logo from './NucksLogo';
+import getOpposingTeamName from './getOpposingTeamName';
 
 const strings = {
 	noGame: 'No game scheduled',
@@ -26,7 +27,7 @@ function getNextGame(dates) {
 	const {
 		status: { abstractGameState }
 	} = game;
-	return abstractGameState == 'Final' ? dates[1] && dates[1].games[0] : game;
+	return abstractGameState === 'Final' ? dates[1] && dates[1].games[0] : game;
 }
 
 async function getGameFromNhlApi() {
@@ -41,7 +42,7 @@ async function getGameFromNhlApi() {
 		`https://statsapi.web.nhl.com/api/v1/schedule?startDate=${today}&endDate=${sixMonthsFromNow}&teamId=23`
 	);
 
-	const game = dates.length == 0 ? null : getNextGame(dates);
+	const game = dates.length === 0 ? null : getNextGame(dates);
 	idbKeyval.set('game', game);
 	return game;
 }
@@ -72,17 +73,19 @@ class NucksCountdownContainer extends Component {
 
 function NucksCountdown({ game }) {
 	const { status: { abstractGameState } = {} } = game || {};
-	let { gameDate } = game || {};
+	let { gameDate, teams } = game || {};
 
 	gameDate = gameDate && new Date(gameDate);
 
 	const countdownString = !game
 		? strings.noGame
-		: abstractGameState == 'Live'
+		: abstractGameState === 'Live'
 		? strings.live
-		: abstractGameState == 'Preview' && isPast(gameDate)
+		: abstractGameState === 'Preview' && isPast(gameDate)
 		? strings.puckDrop
 		: strings.countdown(gameDate);
+
+	const opposingTeamName = getOpposingTeamName(teams);
 
 	return (
 		<div className="App">
@@ -94,6 +97,9 @@ function NucksCountdown({ game }) {
 			</div>
 			<div className="countdown">{countdownString}</div>
 			{gameDate && <div className="date">({gameDate.toLocaleString()})</div>}
+			{opposingTeamName && (
+				<div className="opponent">vs {opposingTeamName}</div>
+			)}
 		</div>
 	);
 }
