@@ -96,7 +96,9 @@ function NucksCountdown({ game }) {
 				<Logo />
 			</div>
 			<div className="countdown">{countdownString}</div>
-			{gameDate && <div className="date">({gameDate.toLocaleString()})</div>}
+			{gameDate && (
+				<div className="date">{dateFormat(gameDate, 'MMM D, h:mm A')}</div>
+			)}
 			{opposingTeamName && (
 				<div className="opponent">vs {opposingTeamName}</div>
 			)}
