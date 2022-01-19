@@ -52,7 +52,9 @@ class NucksCountdownContainer extends Component {
 	async componentDidMount() {
 		let game = await idbKeyval.get('game')
 
-		if (game) {
+		const gameDate = new Date(game.gameDate);
+
+		if (game && !isPast(gameDate)) {
 			this.setState({ loading: false, game })
 		}
 
