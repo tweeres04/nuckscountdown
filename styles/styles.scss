@@ -1,0 +1,50 @@
+$nucks-blue: #032e54;
+
+$primary: $nucks-blue;
+
+.hero-image {
+	border: 1px solid white;
+}
+
+.App {
+	font-size: 2rem;
+	padding: 2rem;
+	text-align: center;
+	background: linear-gradient(
+		to bottom,
+		#032e54,
+		#118654
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	color: white;
+	height: 100vh;
+
+	.date {
+		margin-top: 1em;
+		font-size: 0.5em;
+	}
+
+	.opponent {
+		margin-top: 1em;
+		font-size: 0.75em;
+	}
+
+	@media (min-width: 600px) {
+		.logo {
+			width: 600px;
+			margin: auto;
+		}
+	}
+}
+
+@import 'bulma/sass/base/generic.sass';
+@import 'bulma/sass/base/minireset.sass';
+@import 'bulma/sass/utilities/_all.sass';
+
+@import 'bulma/sass/layout/footer.sass';
+@import 'bulma/sass/layout/hero.sass';
+@import 'bulma/sass/grid/columns.sass';
+@import 'bulma/sass/elements/button.sass';
+@import 'bulma/sass/elements/container.sass';
+@import 'bulma/sass/elements/title.sass';
+@import 'bulma/sass/elements/content.sass';
+@import 'bulma/sass/helpers/typography.sass';
