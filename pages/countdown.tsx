@@ -1,3 +1,5 @@
+import Head from 'next/head'
+
 import React, { Component } from 'react'
 import axios from 'axios'
 import dateFormat from 'date-fns/format'
@@ -6,8 +8,8 @@ import isPast from 'date-fns/is_past'
 import countdown from 'countdown'
 import idbKeyval from 'idb-keyval'
 
-import Logo from './NucksLogo'
-import getOpposingTeamName from './getOpposingTeamName'
+import Logo from '../lib/NucksLogo'
+import getOpposingTeamName from '../lib/getOpposingTeamName'
 
 const strings = {
 	noGame: 'No game scheduled',
@@ -52,7 +54,7 @@ class NucksCountdownContainer extends Component {
 	async componentDidMount() {
 		let game = await idbKeyval.get('game')
 
-		const gameDate = new Date(game.gameDate);
+		const gameDate = new Date(game?.gameDate)
 
 		if (game && !isPast(gameDate)) {
 			this.setState({ loading: false, game })
@@ -94,21 +96,25 @@ function NucksCountdown({ game }) {
 	const opposingTeamName = getOpposingTeamName(teams)
 
 	return (
-		<div className="App">
-			<div
-				className="logo"
-				style={{ width: '256px', height: 'auto', margin: 'auto' }}
-			>
-				<Logo />
+		<>
+			<div className="App">
+				<div
+					className="logo"
+					style={{ width: '256px', height: 'auto', margin: 'auto' }}
+				>
+					<Logo />
+				</div>
+				<div className="countdown">{countdownString}</div>
+				{gameDate && (
+					<div className="date">
+						{dateFormat(gameDate, 'ddd MMM D, h:mm A')}
+					</div>
+				)}
+				{opposingTeamName && (
+					<div className="opponent">vs {opposingTeamName}</div>
+				)}
 			</div>
-			<div className="countdown">{countdownString}</div>
-			{gameDate && (
-				<div className="date">{dateFormat(gameDate, 'ddd MMM D, h:mm A')}</div>
-			)}
-			{opposingTeamName && (
-				<div className="opponent">vs {opposingTeamName}</div>
-			)}
-		</div>
+		</>
 	)
 }
 
