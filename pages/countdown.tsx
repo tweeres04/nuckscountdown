@@ -72,14 +72,14 @@ class NucksCountdownContainer extends Component {
 	}
 	render() {
 		const { loading, game } = this.state
-		return loading || <NucksCountdown game={game} />
+		return <NucksCountdown loading={loading} game={game} />
 	}
 	componentWillUnmount() {
 		clearInterval(this.intervalHandle)
 	}
 }
 
-function NucksCountdown({ game }) {
+function NucksCountdown({ loading, game }) {
 	const { status: { abstractGameState } = {} } = game || {}
 	let { gameDate, teams } = game || {}
 
@@ -104,7 +104,7 @@ function NucksCountdown({ game }) {
 				>
 					<Logo />
 				</div>
-				<div className="countdown">{countdownString}</div>
+				{loading || <div className="countdown">{countdownString}</div>}
 				{gameDate && (
 					<div className="date">
 						{dateFormat(gameDate, 'ddd MMM D, h:mm A')}
