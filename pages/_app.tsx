@@ -1,8 +1,9 @@
 import Head from 'next/head'
+import Script from 'next/script'
 import '../styles/styles.scss'
 import type { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Head>
@@ -29,8 +30,21 @@ function MyApp({ Component, pageProps }: AppProps) {
 				</title>
 			</Head>
 			<Component {...pageProps} />
+			{/* Global site tag (gtag.js) - Google Analytics */}
+			<Script
+				async
+				src="https://www.googletagmanager.com/gtag/js?id=UA-129392253-1"
+			></Script>
+			<Script
+				id="google-analytics-inline"
+				dangerouslySetInnerHTML={{
+					__html: `window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+
+				gtag('config', 'UA-129392253-1');`,
+				}}
+			></Script>
 		</>
 	)
 }
-
-export default MyApp
