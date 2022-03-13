@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<meta name="theme-color" content="rgb(4, 30, 66)" />
 				<meta
 					name="description"
-					content="A slick looking countdown you can save to your home screen so you can always be amped up for the next game. Loads instantly."
+					content="A slick looking countdown you save to your home screen. Always be amped up for the next game. Loads instantly."
 				/>
 				<link rel="manifest" href="/manifest.json" />
 				<link rel="shortcut icon" href="/nucks.png" />
@@ -25,8 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 				<title>
-					Quickly find out when the Vancouver Canucks play next - Nucks
-					Countdown
+					When do the Canucks play next? Find out fast - Nucks Countdown
 				</title>
 			</Head>
 			<Component {...pageProps} />

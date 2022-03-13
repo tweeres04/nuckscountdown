@@ -8,13 +8,11 @@ export default function Index() {
 					<div className="container">
 						<div className="columns is-vcentered">
 							<div className="column">
-								<h1 className="title">
-									Quickly see when the Vancouver Canucks play next
-								</h1>
+								<h1 className="title">Get pumped for the next Canucks game!</h1>
 								<p className="subtitle">
-									A fast and pretty web app that counts down to the next game.
-									No need to check the entire schedule! Easily the best way to
-									plan for today's or tonight's game.
+									A fast, pretty web app that counts down to the next game. No
+									need to check the schedule. The best way to plan for today's
+									or tonight's game.
 								</p>
 								<Link href="/countdown">
 									<a className="button is-primary is-large is-inverted">
@@ -30,7 +28,9 @@ export default function Index() {
 									autoPlay
 									muted
 									loop
-								/>
+								>
+									A video of Nucks Countdown counting down to today's game
+								</video>
 							</div>
 						</div>
 					</div>
