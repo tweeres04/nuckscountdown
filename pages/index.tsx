@@ -1,7 +1,5 @@
 import Link from 'next/link'
 
-import heroImage from '../public/hero.jpg'
-
 export default function Index() {
 	return (
 		<>
@@ -25,7 +23,14 @@ export default function Index() {
 								</Link>
 							</div>
 							<div className="column has-text-centered">
-								<img src={heroImage.src} className="hero-image" />
+								<video
+									width={400}
+									src="/hero.mp4"
+									className="hero-image"
+									autoPlay
+									muted
+									loop
+								/>
 							</div>
 						</div>
 					</div>
