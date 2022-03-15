@@ -61,9 +61,7 @@ class NucksCountdownContainer extends Component {
 		}
 
 		getGameFromNhlApi().then((game) => {
-			setTimeout(() => {
-				this.setState({ loading: false, game })
-			}, 1000)
+			this.setState({ loading: false, game })
 		})
 
 		this.intervalHandle = setInterval(() => {
