@@ -11,7 +11,7 @@
 	"dependencies": {
 		"axios": "^0.26.1",
 		"bulma": "^0.9.3",
-		"countdown": "git://github.com/mckamey/countdownjs.git#1902fb23d21d84958b302c117fe472634a5bcf52",
+		"countdown": "github:mckamey/countdownjs.git#1902fb23d21d84958b302c117fe472634a5bcf52",
 		"date-fns": "^1.29.0",
 		"idb-keyval": "2",
 		"next": "12.1.0",

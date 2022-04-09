@@ -29,7 +29,7 @@ export default function Index() {
 									muted
 									loop
 								>
-									A video of Nucks Countdown counting down to today's game
+									A video of Canucks Countdown counting down to today's game
 								</video>
 							</div>
 						</div>
@@ -38,7 +38,7 @@ export default function Index() {
 			</div>
 			<footer className="footer">
 				<div className="content has-text-centered">
-					<div>Nucks Countdown by</div>
+					<div>Canucks Countdown by</div>
 					<div>
 						<a href="https://tweeres.ca">Tyler Weeres</a>
 					</div>
