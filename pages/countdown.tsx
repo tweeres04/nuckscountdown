@@ -95,6 +95,9 @@ function NucksCountdown({ loading, game }) {
 
 	return (
 		<>
+			<Head>
+				<meta name="robots" content="noindex" />
+			</Head>
 			<div className="App">
 				<div
 					className="logo"
