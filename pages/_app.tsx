@@ -25,9 +25,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				<link rel="apple-touch-startup-image" href="%PUBLIC_URL%/nucks.png" />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-				<title>
-					When do the Canucks play next? Find out fast - Nucks Countdown
-				</title>
 			</Head>
 			<Component {...pageProps} />
 			{/* <!-- Google tag (gtag.js) --> */}
