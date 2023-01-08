@@ -25,18 +25,23 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				<link rel="apple-touch-startup-image" href="%PUBLIC_URL%/nucks.png" />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+				// End apple bullshit
 			</Head>
 			<Component {...pageProps} />
-			{/* <!-- Google tag (gtag.js) --> */}
-			<Script src="https://www.googletagmanager.com/gtag/js?id=G-3CY78LZ9G7"></Script>
-			<script
-				dangerouslySetInnerHTML={{
-					__html: `window.dataLayer = window.dataLayer || [];
-						function gtag(){dataLayer.push(arguments);}
-						gtag('js', new Date());
-						gtag('config', 'G-3CY78LZ9G7');`,
-				}}
-			></script>
+			{process.env.NODE_ENV === 'production' && (
+				<>
+					{/* <!-- Google tag (gtag.js) --> */}
+					<Script src="https://www.googletagmanager.com/gtag/js?id=G-3CY78LZ9G7"></Script>
+					<script
+						dangerouslySetInnerHTML={{
+							__html: `window.dataLayer = window.dataLayer || [];
+									function gtag(){dataLayer.push(arguments);}
+									gtag('js', new Date());
+									gtag('config', 'G-3CY78LZ9G7');`,
+						}}
+					></script>
+				</>
+			)}
 		</>
 	)
 }
