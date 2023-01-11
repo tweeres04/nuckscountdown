@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { linearGradient } from '../lib/linearGradient'
 import { colours } from '../lib/colours'
 import { Team, teamFactory } from '../lib/team'
+import Head from 'next/head'
 
 export async function getStaticPaths() {
 	const { teams } = await fetch(
@@ -34,6 +35,12 @@ export default function TeamComponent({ team }: { team: Team }) {
 	const teamColours = colours[team.abbreviation.toLowerCase()]
 	return (
 		<>
+			<Head>
+				<title>
+					When do the {team.teamName} play next? Find out fast - {team.teamName}{' '}
+					Countdown
+				</title>
+			</Head>
 			<div
 				className="hero is-halfheight is-primary"
 				style={{ background: linearGradient(teamColours) }}
@@ -68,6 +75,13 @@ export default function TeamComponent({ team }: { team: Team }) {
 									A video of {team.teamName} Countdown counting down to today's
 									game
 								</video>
+								{team.abbreviation !== 'VAN' && (
+									<p>
+										<small>
+											Clip from the Canucks version of the countdown
+										</small>
+									</p>
+								)}
 							</div>
 						</div>
 					</div>

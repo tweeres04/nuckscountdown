@@ -8,7 +8,6 @@ import isPast from 'date-fns/is_past'
 import countdown from 'countdown'
 import idbKeyval from 'idb-keyval'
 
-import Logos from '../../lib/logos'
 import { colours } from '../../lib/colours'
 
 import { Team, teamFactory } from '../../lib/team'
@@ -18,9 +17,9 @@ import { linearGradient } from '../../lib/linearGradient'
 
 const strings = {
 	noGame: 'No game scheduled',
-	live: (teamName) => `${teamName} are live!`,
+	live: (teamName: string) => `${teamName} are live!`,
 	puckDrop: 'Puck is about to drop!',
-	countdown: (teamName, gameDate) =>
+	countdown: (teamName: string, gameDate: Date) =>
 		`${countdown(gameDate).toString()} till the ${teamName} play next`,
 	dateFormat: 'YYYY-MM-DD',
 }
@@ -37,7 +36,7 @@ function getNextGame(dates) {
 	return abstractGameState === 'Final' ? dates[1] && dates[1].games[0] : game
 }
 
-async function getGameFromNhlApi(teamId) {
+async function getGameFromNhlApi(teamId: number) {
 	const today = dateFormat(new Date(), strings.dateFormat)
 	const sixMonthsFromNow = dateFormat(
 		addMonths(new Date(), 6),
@@ -73,8 +72,6 @@ class CountdownContainer extends Component {
 		this.intervalHandle = setInterval(() => {
 			this.setState({ now: new Date() })
 		}, 1000)
-
-		console.log(this.props.team)
 	}
 	render() {
 		const { loading, game } = this.state
@@ -126,23 +123,19 @@ function Countdown({
 		<>
 			<Head>
 				<meta name="robots" content="noindex" />
-				<title>
-					When do the {teamName} play next? Find out fast - {teamName} Countdown
-				</title>
+				<title>{teamName} Countdown</title>
 			</Head>
-			<Logos />
 			<div
 				className="App"
 				style={{
 					background: linearGradient(teamColours),
 				}}
 			>
-				<svg
+				<img
 					className="logo"
 					style={{ width: '256px', height: 'auto', margin: 'auto' }}
-				>
-					<use href={`#team-${teamId}-20222023-dark`}></use>
-				</svg>
+					src={`/logos/${abbreviation.toLowerCase()}.svg`}
+				/>
 				{loading || <div className="countdown">{countdownString}</div>}
 				{gameDate && (
 					<div className="date">

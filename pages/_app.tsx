@@ -2,8 +2,18 @@ import Head from 'next/head'
 import Script from 'next/script'
 import '../styles/styles.scss'
 import type { AppProps } from 'next/app'
+import { Team } from '../lib/team'
+import { colours } from '../lib/colours'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+	const team: Team = pageProps.team
+
+	const lowercaseTeamAbbreviation = team.abbreviation.toLowerCase()
+
+	const logoPath = `/logos/${team.abbreviation.toLowerCase()}.svg`
+
+	const { primary: primaryColour } = colours[lowercaseTeamAbbreviation]
+
 	return (
 		<>
 			<Head>
@@ -12,17 +22,23 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 					name="viewport"
 					content="width=device-width, initial-scale=1, shrink-to-fit=no"
 				/>
-				<meta name="theme-color" content="rgb(4, 30, 66)" />
+				<meta name="theme-color" content={primaryColour} />
 				<meta
 					name="description"
 					content="A slick looking countdown you save to your home screen. Always be amped up for the next game. Loads instantly."
 				/>
-				<link rel="manifest" href="/manifest.json" />
-				<link rel="shortcut icon" href="/nucks.png" />
+				<link
+					rel="manifest"
+					href={`/api/manifest/${lowercaseTeamAbbreviation}`}
+				/>
+				<link rel="shortcut icon" href={logoPath} />
 				// All the apple bullshit
-				<meta name="apple-mobile-web-app-title" content="Nucks Countdown" />
-				<link rel="apple-touch-icon" href="%PUBLIC_URL%/nucks.png" />
-				<link rel="apple-touch-startup-image" href="%PUBLIC_URL%/nucks.png" />
+				<meta
+					name="apple-mobile-web-app-title"
+					content={`${team.name} Countdown`}
+				/>
+				<link rel="apple-touch-icon" href={logoPath} />
+				<link rel="apple-touch-startup-image" href={logoPath} />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 				// End apple bullshit
