@@ -6,13 +6,15 @@ import { Team } from '../lib/team'
 import { colours } from '../lib/colours'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-	const team: Team = pageProps.team
+	const team: Team | undefined = pageProps.team
 
-	const lowercaseTeamAbbreviation = team.abbreviation.toLowerCase()
+	const lowercaseTeamAbbreviation = team?.abbreviation.toLowerCase()
 
-	const logoPath = `/logos/${team.abbreviation.toLowerCase()}.svg`
+	const logoPath = `/logos/${team?.abbreviation.toLowerCase()}.svg`
 
-	const { primary: primaryColour } = colours[lowercaseTeamAbbreviation]
+	const { primary: primaryColour } = lowercaseTeamAbbreviation
+		? colours[lowercaseTeamAbbreviation]
+		: { primary: '#000' }
 
 	return (
 		<>
@@ -35,7 +37,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				// All the apple bullshit
 				<meta
 					name="apple-mobile-web-app-title"
-					content={`${team.name} Countdown`}
+					content={`${team?.name} Countdown`}
 				/>
 				<link rel="apple-touch-icon" href={logoPath} />
 				<link rel="apple-touch-startup-image" href={logoPath} />
