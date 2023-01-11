@@ -1,15 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { colours } from '../../../lib/colours'
-import { Team } from '../../../lib/team'
+import { teams } from '../../../lib/teams'
 
 export default async function manifestHandler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
-	const { teams }: { teams: Team[] } = await fetch(
-		'https://statsapi.web.nhl.com/api/v1/teams'
-	).then((response) => response.json())
-
 	const { team: teamParam } = req.query
 
 	const team = teams.find((t) => t.abbreviation.toLowerCase() === teamParam)

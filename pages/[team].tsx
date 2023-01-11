@@ -3,12 +3,9 @@ import { linearGradient } from '../lib/linearGradient'
 import { colours } from '../lib/colours'
 import { Team, teamFactory } from '../lib/team'
 import Head from 'next/head'
+import { teams } from '../lib/teams'
 
 export async function getStaticPaths() {
-	const { teams } = await fetch(
-		'https://statsapi.web.nhl.com/api/v1/teams'
-	).then((response) => response.json())
-
 	const paths = teams.map((t: Team) => ({
 		params: { team: t.teamName.toLowerCase() },
 	}))
@@ -20,10 +17,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: { team: string } }) {
-	const { teams } = await fetch(
-		'https://statsapi.web.nhl.com/api/v1/teams'
-	).then((response) => response.json())
-
 	const team = teams.find(
 		(t: Team) => t.teamName.toLowerCase() === params.team.toLowerCase()
 	)
