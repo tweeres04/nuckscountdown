@@ -12,6 +12,7 @@ import { colours } from '../../lib/colours'
 
 import getOpposingTeamName from '../../lib/getOpposingTeamName'
 import { linearGradient } from '../../lib/linearGradient'
+import Nav from '../../lib/nav'
 
 export { getStaticPaths } from '../../lib/getStaticPaths'
 export { getStaticProps } from '../../lib/getStaticProps'
@@ -76,30 +77,15 @@ class CountdownContainer extends Component {
 	}
 	render() {
 		const { loading, game } = this.state
-		return (
-			<Countdown
-				loading={loading}
-				game={game}
-				teamId={this.props.team.id}
-				abbreviation={this.props.team.abbreviation}
-				teamName={this.props.team.teamName}
-				fullTeamName={this.props.team.name}
-			/>
-		)
+		return <Countdown loading={loading} game={game} team={this.props.team} />
 	}
 	componentWillUnmount() {
 		clearInterval(this.intervalHandle)
 	}
 }
 
-function Countdown({
-	loading,
-	game,
-	teamId,
-	abbreviation,
-	teamName,
-	fullTeamName,
-}) {
+function Countdown({ loading, game, team }) {
+	const { abbreviation, teamName, teamName: fullTeamName } = team
 	const { status: { abstractGameState } = {} } = game || {}
 	let { gameDate, teams } = game || {}
 
@@ -126,6 +112,7 @@ function Countdown({
 				<meta name="robots" content="noindex" />
 				<title>{teamName} Countdown</title>
 			</Head>
+			<Nav team={team} pathSuffix="/countdown" />
 			<div
 				className="App"
 				style={{

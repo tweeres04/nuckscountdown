@@ -1,31 +1,20 @@
 import Link from 'next/link'
 import { linearGradient } from '../lib/linearGradient'
 import { colours } from '../lib/colours'
-import { Team, teamFactory } from '../lib/team'
+import { Team } from '../lib/team'
 import Head from 'next/head'
-import { teams } from '../lib/teams'
-import { useState } from 'react'
 import { paramCase } from 'change-case'
+import Nav from '../lib/nav'
+import { getTeamColourClass } from '../lib/getTeamColourClass'
 
 export { getStaticPaths } from '../lib/getStaticPaths'
 export { getStaticProps } from '../lib/getStaticProps'
 
 export default function TeamComponent({ team }: { team: Team }) {
-	const teamColourClass = `is-${team.abbreviation.toLowerCase()}`
-	const sortedTeams = teams.sort((a, b) => (a.name < b.name ? -1 : 1))
-	const [showNavMenu, setShowNavMenu] = useState(false)
+	const teamColourClass = getTeamColourClass(team)
 	const teamColours = colours[team.abbreviation.toLowerCase()]
-	const navbarClasses = `navbar ${teamColourClass}`
-	const burgerClasses = showNavMenu
-		? 'navbar-burger is-active'
-		: 'navbar-burger'
-	const menuClasses = showNavMenu ? `navbar-menu is-active` : `navbar-menu`
 	const heroClasses = `hero is-halfheight ${teamColourClass}`
 	const heroButtonClasses = `button is-large is-inverted ${teamColourClass}`
-
-	function toggleNavMenu() {
-		setShowNavMenu(!showNavMenu)
-	}
 
 	return (
 		<>
@@ -35,51 +24,7 @@ export default function TeamComponent({ team }: { team: Team }) {
 					Countdown
 				</title>
 			</Head>
-			<nav
-				className={navbarClasses}
-				role="navigation"
-				aria-label="main navigation"
-			>
-				<div className="navbar-brand">
-					<a className="navbar-item" href={`/${paramCase(team.teamName)}`}>
-						NHL Countdown
-					</a>
-
-					<a
-						role="button"
-						className={burgerClasses}
-						aria-label="menu"
-						aria-expanded={showNavMenu ? 'true' : 'false'}
-						onClick={toggleNavMenu}
-					>
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-					</a>
-				</div>
-
-				<div className={menuClasses}>
-					<div className="navbar-start">
-						<div className="navbar-item has-dropdown is-hoverable">
-							<a className="navbar-link">Teams</a>
-
-							<div className="navbar-dropdown">
-								{sortedTeams.map((team) => (
-									<Link href={`/${paramCase(team.teamName)}`}>
-										<a
-											key={team.id}
-											className="navbar-item"
-											onClick={toggleNavMenu}
-										>
-											{team.name}
-										</a>
-									</Link>
-								))}
-							</div>
-						</div>
-					</div>
-				</div>
-			</nav>
+			<Nav team={team} />
 			<div
 				className={heroClasses}
 				style={{ background: linearGradient(teamColours) }}
