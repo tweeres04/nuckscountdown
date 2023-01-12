@@ -1,6 +1,37 @@
-$nucks-blue: #032e54;
-
-$primary: $nucks-blue;
+$custom-colors: (
+	'njd': #010101,
+	'nyi': #003087,
+	'nyr': #0133a0,
+	'phi': #010101,
+	'pit': #010101,
+	'bos': #010101,
+	'buf': #003087,
+	'mtl': #011e62,
+	'ott': #010101,
+	'tor': #00205a,
+	'car': #010101,
+	'fla': #041e42,
+	'tbl': #002868,
+	'wsh': #c7102e,
+	'chi': #010101,
+	'det': #c7102e,
+	'nsh': #041e42,
+	'stl': #041e42,
+	'cgy': #c7102e,
+	'col': #6e263d,
+	'edm': #ce4520,
+	'van': #00205b,
+	'ana': #000,
+	'dal': #000000,
+	'lak': #000000,
+	'sjs': #006d75,
+	'cbj': #002654,
+	'min': #154734,
+	'wpg': #041e42,
+	'ari': #8c2633,
+	'vgk': #000,
+	'sea': #001628,
+);
 
 .hero-image {
 	border: 1px solid white;
@@ -48,3 +79,4 @@ $primary: $nucks-blue;
 @import 'bulma/sass/elements/title.sass';
 @import 'bulma/sass/elements/content.sass';
 @import 'bulma/sass/helpers/typography.sass';
+@import 'bulma/sass/components/navbar.sass';

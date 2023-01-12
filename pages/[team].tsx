@@ -4,6 +4,7 @@ import { colours } from '../lib/colours'
 import { Team, teamFactory } from '../lib/team'
 import Head from 'next/head'
 import { teams } from '../lib/teams'
+import { useState } from 'react'
 
 export async function getStaticPaths() {
 	const paths = teams.map((t: Team) => ({
@@ -21,11 +22,26 @@ export async function getStaticProps({ params }: { params: { team: string } }) {
 		(t: Team) => t.teamName.toLowerCase() === params.team.toLowerCase()
 	)
 
-	return { props: { team: teamFactory(team) } }
+	return { props: { team: teamFactory(team as Team) } }
 }
 
 export default function TeamComponent({ team }: { team: Team }) {
+	const teamColourClass = `is-${team.abbreviation.toLowerCase()}`
+	const sortedTeams = teams.sort((a, b) => (a.name < b.name ? -1 : 1))
+	const [showNavMenu, setShowNavMenu] = useState(false)
 	const teamColours = colours[team.abbreviation.toLowerCase()]
+	const navbarClasses = `navbar ${teamColourClass}`
+	const burgerClasses = showNavMenu
+		? 'navbar-burger is-active'
+		: 'navbar-burger'
+	const menuClasses = showNavMenu ? `navbar-menu is-active` : `navbar-menu`
+	const heroClasses = `hero is-halfheight ${teamColourClass}`
+	const heroButtonClasses = `button is-large is-inverted ${teamColourClass}`
+
+	function toggleNavMenu() {
+		setShowNavMenu(!showNavMenu)
+	}
+
 	return (
 		<>
 			<Head>
@@ -34,8 +50,53 @@ export default function TeamComponent({ team }: { team: Team }) {
 					Countdown
 				</title>
 			</Head>
+			<nav
+				className={navbarClasses}
+				role="navigation"
+				aria-label="main navigation"
+			>
+				<div className="navbar-brand">
+					<a className="navbar-item" href={`/${team.teamName.toLowerCase()}`}>
+						NHL Countdown
+					</a>
+
+					<a
+						role="button"
+						className={burgerClasses}
+						aria-label="menu"
+						aria-expanded={showNavMenu ? 'true' : 'false'}
+						onClick={toggleNavMenu}
+					>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+					</a>
+				</div>
+
+				<div className={menuClasses}>
+					<div className="navbar-start">
+						<div className="navbar-item has-dropdown is-hoverable">
+							<a className="navbar-link">Teams</a>
+
+							<div className="navbar-dropdown">
+								{sortedTeams.map((team) => (
+									<Link href={`/${team.teamName.toLowerCase()}`}>
+										<a
+											key={team.id}
+											className="navbar-item"
+											onClick={toggleNavMenu}
+										>
+											{team.name}
+										</a>
+									</Link>
+								))}
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
 			<div
-				className="hero is-halfheight is-primary"
+				className={heroClasses}
 				style={{ background: linearGradient(teamColours) }}
 			>
 				<div className="hero-body">
@@ -51,9 +112,7 @@ export default function TeamComponent({ team }: { team: Team }) {
 									game.
 								</p>
 								<Link href={`${team.teamName.toLowerCase()}/countdown`}>
-									<a className="button is-dark is-large is-inverted">
-										Start the countdown →
-									</a>
+									<a className={heroButtonClasses}>Start the countdown →</a>
 								</Link>
 							</div>
 							<div className="column has-text-centered">
