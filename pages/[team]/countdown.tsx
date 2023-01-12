@@ -17,6 +17,10 @@ import Nav from '../../lib/nav'
 export { getStaticPaths } from '../../lib/getStaticPaths'
 export { getStaticProps } from '../../lib/getStaticProps'
 
+function idbKey(teamId: number) {
+	return `game-${teamId}`
+}
+
 const strings = {
 	noGame: 'No game scheduled',
 	live: (teamName: string) => `${teamName} are live!`,
@@ -51,7 +55,7 @@ async function getGameFromNhlApi(teamId: number) {
 	)
 
 	const game = dates.length === 0 ? null : getNextGame(dates)
-	idbKeyval.set('game', game)
+	idbKeyval.set(idbKey(teamId), game)
 	return game
 }
 
@@ -59,7 +63,7 @@ class CountdownContainer extends Component {
 	state = { loading: true, game: null, now: new Date() }
 	async componentDidMount() {
 		const { id: teamId } = this.props.team
-		let game = await idbKeyval.get('game')
+		let game = await idbKeyval.get(idbKey(teamId))
 
 		const gameDate = new Date(game?.gameDate)
 
