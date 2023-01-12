@@ -136,6 +136,7 @@ function Countdown({
 					className="logo"
 					style={{ width: '256px', height: 'auto', margin: 'auto' }}
 					src={`/logos/${abbreviation.toLowerCase()}.svg`}
+					alt={`${fullTeamName} logo`}
 				/>
 				{loading || <div className="countdown">{countdownString}</div>}
 				{gameDate && (
