@@ -5,25 +5,10 @@ import { Team, teamFactory } from '../lib/team'
 import Head from 'next/head'
 import { teams } from '../lib/teams'
 import { useState } from 'react'
+import { paramCase } from 'change-case'
 
-export async function getStaticPaths() {
-	const paths = teams.map((t: Team) => ({
-		params: { team: t.teamName.toLowerCase() },
-	}))
-
-	return {
-		paths,
-		fallback: false,
-	}
-}
-
-export async function getStaticProps({ params }: { params: { team: string } }) {
-	const team = teams.find(
-		(t: Team) => t.teamName.toLowerCase() === params.team.toLowerCase()
-	)
-
-	return { props: { team: teamFactory(team as Team) } }
-}
+export { getStaticPaths } from '../lib/getStaticPaths'
+export { getStaticProps } from '../lib/getStaticProps'
 
 export default function TeamComponent({ team }: { team: Team }) {
 	const teamColourClass = `is-${team.abbreviation.toLowerCase()}`
@@ -56,7 +41,7 @@ export default function TeamComponent({ team }: { team: Team }) {
 				aria-label="main navigation"
 			>
 				<div className="navbar-brand">
-					<a className="navbar-item" href={`/${team.teamName.toLowerCase()}`}>
+					<a className="navbar-item" href={`/${paramCase(team.teamName)}`}>
 						NHL Countdown
 					</a>
 
@@ -80,7 +65,7 @@ export default function TeamComponent({ team }: { team: Team }) {
 
 							<div className="navbar-dropdown">
 								{sortedTeams.map((team) => (
-									<Link href={`/${team.teamName.toLowerCase()}`}>
+									<Link href={`/${paramCase(team.teamName)}`}>
 										<a
 											key={team.id}
 											className="navbar-item"
@@ -111,7 +96,7 @@ export default function TeamComponent({ team }: { team: Team }) {
 									need to check the schedule. The best way to plan for tonight's
 									game.
 								</p>
-								<Link href={`${team.teamName.toLowerCase()}/countdown`}>
+								<Link href={`${paramCase(team.teamName)}/countdown`}>
 									<a className={heroButtonClasses}>Start the countdown →</a>
 								</Link>
 							</div>

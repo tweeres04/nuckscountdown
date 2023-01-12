@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { colours } from '../../../lib/colours'
 import { teams } from '../../../lib/teams'
+import { paramCase } from 'change-case'
 
 export default async function manifestHandler(
 	req: NextApiRequest,
@@ -26,7 +27,7 @@ export default async function manifestHandler(
 				sizes: 'any',
 			},
 		],
-		start_url: `/${team.teamName.toLowerCase()}/countdown`,
+		start_url: `/${paramCase(team.teamName)}/countdown`,
 		display: 'standalone',
 		theme_color: primaryColour,
 		background_color: primaryColour,

@@ -10,12 +10,11 @@ import idbKeyval from 'idb-keyval'
 
 import { colours } from '../../lib/colours'
 
-import { Team, teamFactory } from '../../lib/team'
-
 import getOpposingTeamName from '../../lib/getOpposingTeamName'
 import { linearGradient } from '../../lib/linearGradient'
 
-import { teams } from '../../lib/teams'
+export { getStaticPaths } from '../../lib/getStaticPaths'
+export { getStaticProps } from '../../lib/getStaticProps'
 
 const strings = {
 	noGame: 'No game scheduled',
@@ -150,25 +149,6 @@ function Countdown({
 			</div>
 		</>
 	)
-}
-
-export async function getStaticPaths() {
-	const paths = teams.map((t: Team) => ({
-		params: { team: t.teamName.toLowerCase() },
-	}))
-
-	return {
-		paths,
-		fallback: false,
-	}
-}
-
-export async function getStaticProps({ params }: { params: { team: string } }) {
-	const team = teams.find(
-		(t: Team) => t.teamName.toLowerCase() === params.team.toLowerCase()
-	)
-
-	return { props: { team: teamFactory(team) } }
 }
 
 export default CountdownContainer
