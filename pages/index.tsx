@@ -1,5 +1,14 @@
 import Link from 'next/link'
 
+export function getServerSideProps() {
+	return {
+		redirect: {
+			destination: 'https://nhlcountdown.tweeres.ca/canucks',
+			permanent: true,
+		},
+	}
+}
+
 export default function Index() {
 	return (
 		<>

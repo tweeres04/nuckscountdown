@@ -11,6 +11,15 @@ import idbKeyval from 'idb-keyval'
 import Logo from '../lib/NucksLogo'
 import getOpposingTeamName from '../lib/getOpposingTeamName'
 
+export function getServerSideProps() {
+	return {
+		redirect: {
+			destination: 'https://nhlcountdown.tweeres.ca/canucks/countdown',
+			permanent: true,
+		},
+	}
+}
+
 const strings = {
 	noGame: 'No game scheduled',
 	live: 'Nucks are live!',
