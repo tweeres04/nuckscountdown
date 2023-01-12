@@ -89,7 +89,7 @@ class CountdownContainer extends Component {
 }
 
 function Countdown({ loading, game, team }) {
-	const { abbreviation, teamName, teamName: fullTeamName } = team
+	const { abbreviation, teamName, name: fullTeamName } = team
 	const { status: { abstractGameState } = {} } = game || {}
 	let { gameDate, teams } = game || {}
 
