@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import React, { Component } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import dateFormat from 'date-fns/format'
 import addMonths from 'date-fns/add_months'
@@ -13,6 +13,7 @@ import { colours } from '../../lib/colours'
 import getOpposingTeamName from '../../lib/getOpposingTeamName'
 import { linearGradient } from '../../lib/linearGradient'
 import Nav from '../../lib/nav'
+import { Team } from '../../lib/team'
 
 export { getStaticPaths } from '../../lib/getStaticPaths'
 export { getStaticProps } from '../../lib/getStaticProps'
@@ -59,36 +60,52 @@ async function getGameFromNhlApi(teamId: number) {
 	return game
 }
 
-class CountdownContainer extends Component {
-	state = { loading: true, game: null, now: new Date() }
-	async componentDidMount() {
-		const { id: teamId } = this.props.team
-		let game = await idbKeyval.get(idbKey(teamId))
+function useGame(team: Team) {
+	const [loading, setIsLoading] = useState(true)
+	const [game, setGame] = useState(null)
+	const [, setNow] = useState(new Date())
+	const intervalHandleRef = useRef<number>()
 
-		const gameDate = new Date(game?.gameDate)
+	useEffect(() => {
+		async function fetchGame() {
+			setIsLoading(true)
+			setGame(null)
+			cleanup()
 
-		if (game && !isPast(gameDate)) {
-			this.setState({ loading: false, game })
+			const { id: teamId } = team
+			let game = await idbKeyval.get(idbKey(teamId))
+
+			const gameDate = new Date(game?.gameDate)
+
+			if (game && !isPast(gameDate)) {
+				setIsLoading(false)
+				setGame(game)
+			}
+
+			getGameFromNhlApi(teamId).then((game) => {
+				setIsLoading(false)
+				setGame(game)
+			})
+
+			intervalHandleRef.current = window.setInterval(() => {
+				setNow(new Date())
+			}, 1000)
+
+			return cleanup
 		}
 
-		getGameFromNhlApi(teamId).then((game) => {
-			this.setState({ loading: false, game })
-		})
+		function cleanup() {
+			clearInterval(intervalHandleRef.current)
+		}
 
-		this.intervalHandle = setInterval(() => {
-			this.setState({ now: new Date() })
-		}, 1000)
-	}
-	render() {
-		const { loading, game } = this.state
-		return <Countdown loading={loading} game={game} team={this.props.team} />
-	}
-	componentWillUnmount() {
-		clearInterval(this.intervalHandle)
-	}
+		fetchGame()
+	}, [team])
+
+	return { loading, game }
 }
 
-function Countdown({ loading, game, team }) {
+export default function Countdown({ team }) {
+	const { loading, game } = useGame(team)
 	const { abbreviation, teamName, name: fullTeamName } = team
 	const { status: { abstractGameState } = {} } = game || {}
 	let { gameDate, teams } = game || {}
@@ -142,5 +159,3 @@ function Countdown({ loading, game, team }) {
 		</>
 	)
 }
-
-export default CountdownContainer

@@ -52,9 +52,11 @@ export default function Nav({
 							<a className="navbar-link">Teams</a>
 							<div className="navbar-dropdown">
 								{sortedTeams.map((team) => (
-									<Link href={`/${paramCase(team.teamName)}${pathSuffix}`}>
+									<Link
+										key={team.id}
+										href={`/${paramCase(team.teamName)}${pathSuffix}`}
+									>
 										<a
-											key={team.id}
 											className="navbar-item"
 											onClick={() => {
 												setShowNavMenu(false)
