@@ -18,6 +18,28 @@ import { Team } from '../../lib/team'
 export { getStaticPaths } from '../../lib/getStaticPaths'
 export { getStaticProps } from '../../lib/getStaticProps'
 
+type GameTeam = {
+	team: {
+		id: number
+		name: string
+	}
+}
+
+type Game = {
+	status: {
+		abstractGameState: string
+	}
+	gameDate: string
+	teams: {
+		away: GameTeam
+		home: GameTeam
+	}
+}
+
+type GameDate = {
+	games: Game[]
+}
+
 function idbKey(teamId: number) {
 	return `game-${teamId}`
 }
@@ -31,7 +53,7 @@ const strings = {
 	dateFormat: 'YYYY-MM-DD',
 }
 
-function getNextGame(dates) {
+function getNextGame(dates: GameDate[]) {
 	let [
 		{
 			games: [game],
@@ -62,7 +84,7 @@ async function getGameFromNhlApi(teamId: number) {
 
 function useGame(team: Team) {
 	const [loading, setIsLoading] = useState(true)
-	const [game, setGame] = useState(null)
+	const [game, setGame] = useState<Game | null>(null)
 	const [, setNow] = useState(new Date())
 	const intervalHandleRef = useRef<number>()
 
@@ -74,10 +96,14 @@ function useGame(team: Team) {
 
 			const { id: teamId } = team
 
-			idbKeyval.get(idbKey(teamId)).then((game) => {
-				const gameDate = new Date(game?.gameDate)
+			idbKeyval.get<Game | null>(idbKey(teamId)).then((game) => {
+				if (!game) {
+					return
+				}
 
-				if (game && !isPast(gameDate)) {
+				const gameDate = new Date(game.gameDate)
+
+				if (!isPast(gameDate)) {
 					setIsLoading(false)
 					setGame(game)
 				}
@@ -112,18 +138,18 @@ type Props = {
 export default function Countdown({ team }: Props) {
 	const { loading, game } = useGame(team)
 	const { abbreviation, teamName, name: fullTeamName } = team
-	const { status: { abstractGameState } = {} } = game || {}
-	let { gameDate, teams } = game || {}
+	const { teams, gameDate: gameDateString, status } = game || {}
+	const { abstractGameState } = status || {}
 
-	gameDate = gameDate && new Date(gameDate)
+	const gameDate = gameDateString && new Date(gameDateString)
 
 	const countdownString = !game
 		? strings.noGame
 		: abstractGameState === 'Live'
 		? strings.live(teamName)
-		: abstractGameState === 'Preview' && isPast(gameDate)
+		: abstractGameState === 'Preview' && isPast(gameDate as Date)
 		? strings.puckDrop
-		: strings.countdown(teamName, gameDate)
+		: strings.countdown(teamName, gameDate as Date)
 
 	const opposingTeamName = getOpposingTeamName(fullTeamName, teams)
 
