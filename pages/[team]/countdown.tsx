@@ -73,14 +73,15 @@ function useGame(team: Team) {
 			cleanup()
 
 			const { id: teamId } = team
-			let game = await idbKeyval.get(idbKey(teamId))
 
-			const gameDate = new Date(game?.gameDate)
+			idbKeyval.get(idbKey(teamId)).then((game) => {
+				const gameDate = new Date(game?.gameDate)
 
-			if (game && !isPast(gameDate)) {
-				setIsLoading(false)
-				setGame(game)
-			}
+				if (game && !isPast(gameDate)) {
+					setIsLoading(false)
+					setGame(game)
+				}
+			})
 
 			getGameFromNhlApi(teamId).then((game) => {
 				setIsLoading(false)
@@ -104,7 +105,7 @@ function useGame(team: Team) {
 	return { loading, game }
 }
 
-export default function Countdown({ team }) {
+export default function Countdown({ team }: { team: Team }) {
 	const { loading, game } = useGame(team)
 	const { abbreviation, teamName, name: fullTeamName } = team
 	const { status: { abstractGameState } = {} } = game || {}
