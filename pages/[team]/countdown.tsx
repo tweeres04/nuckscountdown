@@ -12,7 +12,7 @@ import { colours } from '../../lib/colours'
 
 import getOpposingTeamName from '../../lib/getOpposingTeamName'
 import { linearGradient } from '../../lib/linearGradient'
-import Nav from '../../lib/nav'
+import Nav from '../../lib/Nav'
 import { Team } from '../../lib/team'
 
 export { getStaticPaths } from '../../lib/getStaticPaths'
@@ -105,7 +105,11 @@ function useGame(team: Team) {
 	return { loading, game }
 }
 
-export default function Countdown({ team }: { team: Team }) {
+type Props = {
+	team: Team
+}
+
+export default function Countdown({ team }: Props) {
 	const { loading, game } = useGame(team)
 	const { abbreviation, teamName, name: fullTeamName } = team
 	const { status: { abstractGameState } = {} } = game || {}
@@ -122,6 +126,8 @@ export default function Countdown({ team }: { team: Team }) {
 		: strings.countdown(teamName, gameDate)
 
 	const opposingTeamName = getOpposingTeamName(fullTeamName, teams)
+
+	const isHome = game?.teams?.home?.team?.id === team.id
 
 	const teamColours = colours[abbreviation.toLowerCase()] || {
 		primary: 'black',
@@ -154,7 +160,9 @@ export default function Countdown({ team }: { team: Team }) {
 					</div>
 				)}
 				{opposingTeamName && (
-					<div className="opponent">vs {opposingTeamName}</div>
+					<div className="opponent">
+						{isHome ? 'vs' : 'at'} {opposingTeamName}
+					</div>
 				)}
 			</div>
 		</>

@@ -4,7 +4,7 @@ import { colours } from '../lib/colours'
 import { Team } from '../lib/team'
 import Head from 'next/head'
 import { paramCase } from 'change-case'
-import Nav from '../lib/nav'
+import Nav from '../lib/Nav'
 import { getTeamColourClass } from '../lib/getTeamColourClass'
 
 export { getStaticPaths } from '../lib/getStaticPaths'

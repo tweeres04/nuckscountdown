@@ -6,13 +6,12 @@ import { Team } from './team'
 import { teams } from './teams'
 import { getTeamColourClass } from './getTeamColourClass'
 
-export default function Nav({
-	team,
-	pathSuffix = '',
-}: {
+type Props = {
 	team: Team
-	pathSuffix: string
-}) {
+	pathSuffix?: string
+}
+
+export default function Nav({ team, pathSuffix = '' }: Props) {
 	const teamColourClass = getTeamColourClass(team)
 	const sortedTeams = teams.sort((a, b) => (a.name < b.name ? -1 : 1))
 	const [showNavMenu, setShowNavMenu] = useState(false)
