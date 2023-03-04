@@ -48,7 +48,7 @@ export default function Nav({ team, pathSuffix = '' }: Props) {
 				<div className={menuClasses}>
 					<div className="navbar-start">
 						<div className="navbar-item has-dropdown is-hoverable">
-							<a className="navbar-link">Teams</a>
+							<div className="navbar-link">Teams</div>
 							<div className="navbar-dropdown">
 								{sortedTeams.map((team) => (
 									<Link
