@@ -7,10 +7,16 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "Launch Program",
+			"name": "Make logo files",
 			"skipFiles": ["<node_internals>/**"],
 			"program": "${workspaceFolder}/scripts/logo-files/index.mjs",
 			"cwd": "${workspaceFolder}/scripts/logo-files"
+		},
+		{
+			"name": "Next.js: debug server-side",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "yarn dev"
 		}
 	]
 }

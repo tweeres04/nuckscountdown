@@ -8,9 +8,22 @@ import Nav from '../lib/Nav'
 import { getTeamColourClass } from '../lib/getTeamColourClass'
 
 export { getStaticPaths } from '../lib/getStaticPaths'
-export { getStaticProps } from '../lib/getStaticProps'
+import {
+	getStaticPropsWithHeroVideoUrl,
+	StaticPropsProps,
+} from '../lib/getStaticProps'
 
-export default function TeamComponent({ team }: { team: Team }) {
+export function getStaticProps(props: StaticPropsProps) {
+	return getStaticPropsWithHeroVideoUrl(props)
+}
+
+export default function TeamComponent({
+	team,
+	heroVideo,
+}: {
+	team: Team
+	heroVideo: string
+}) {
 	const teamColourClass = getTeamColourClass(team)
 	const teamColours = colours[team.abbreviation.toLowerCase()]
 	const heroClasses = `hero is-halfheight ${teamColourClass}`
@@ -47,17 +60,17 @@ export default function TeamComponent({ team }: { team: Team }) {
 							</div>
 							<div className="column has-text-centered">
 								<video
-									width={400}
-									src="/hero.mp4"
+									src={`/hero/${heroVideo}`}
 									className="hero-image"
 									autoPlay
 									muted
 									loop
 								>
-									A video of {team.teamName} Countdown counting down to today's
-									game
+									A video of{' '}
+									{heroVideo === 'hero.mp4' ? 'Canucks' : team.teamName}{' '}
+									Countdown in action
 								</video>
-								{team.abbreviation !== 'VAN' && (
+								{team.abbreviation !== 'VAN' && heroVideo === 'hero.mp4' && (
 									<p>
 										<small>
 											Clip from the Canucks version of the countdown
