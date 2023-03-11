@@ -10,7 +10,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 	const lowercaseTeamAbbreviation = team?.abbreviation.toLowerCase()
 
-	const logoPath = `/logos/${team?.abbreviation.toLowerCase()}.svg`
+	const svgLogoPath = `/logos/${lowercaseTeamAbbreviation}.svg`
+	const pngLogoPath = `/logos/${lowercaseTeamAbbreviation}.png`
 
 	const { primary: primaryColour } = lowercaseTeamAbbreviation
 		? colours[lowercaseTeamAbbreviation]
@@ -33,14 +34,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 					rel="manifest"
 					href={`/api/manifest/${lowercaseTeamAbbreviation}`}
 				/>
-				<link rel="shortcut icon" href={logoPath} />
+				<link rel="shortcut icon" href={svgLogoPath} />
 				// All the apple bullshit
 				<meta
 					name="apple-mobile-web-app-title"
 					content={`${team?.name} Countdown`}
 				/>
-				<link rel="apple-touch-icon" href={logoPath} />
-				<link rel="apple-touch-startup-image" href={logoPath} />
+				<link rel="apple-touch-icon" href={pngLogoPath} />
+				<link rel="apple-touch-startup-image" href={pngLogoPath} />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 				// End apple bullshit

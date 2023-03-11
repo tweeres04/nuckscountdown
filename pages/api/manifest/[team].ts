@@ -23,7 +23,7 @@ export default async function manifestHandler(
 		short_name: team.teamName,
 		icons: [
 			{
-				src: `/logos/${team.abbreviation.toLowerCase()}.svg`,
+				src: `/logos/${team.abbreviation.toLowerCase()}.png`,
 				sizes: 'any',
 			},
 		],
