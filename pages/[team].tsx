@@ -8,23 +8,10 @@ import Nav from '../lib/Nav'
 import { getTeamColourClass } from '../lib/getTeamColourClass'
 
 export { getStaticPaths } from '../lib/getStaticPaths'
-import {
-	getStaticPropsWithHeroVideoUrl,
-	StaticPropsProps,
-} from '../lib/getStaticProps'
+export { getStaticProps } from '../lib/getStaticProps'
 import { useUpdateWebAppManifest } from '../lib/useUpdateWebAppManifest'
 
-export function getStaticProps(props: StaticPropsProps) {
-	return getStaticPropsWithHeroVideoUrl(props)
-}
-
-export default function TeamLandingPage({
-	team,
-	heroVideo,
-}: {
-	team: Team
-	heroVideo: string
-}) {
+export default function TeamLandingPage({ team }: { team: Team }) {
 	useUpdateWebAppManifest(team.abbreviation)
 	const teamColourClass = getTeamColourClass(team)
 	const teamColours = colours[team.abbreviation.toLowerCase()]
@@ -62,24 +49,15 @@ export default function TeamLandingPage({
 							</div>
 							<div className="column has-text-centered">
 								<video
-									src={`/hero/${heroVideo}`}
+									src={`/hero/${team.abbreviation.toLowerCase()}.mp4`}
 									className="hero-image"
 									autoPlay
 									playsInline
 									muted
 									loop
 								>
-									A video of{' '}
-									{heroVideo === 'hero.mp4' ? 'Canucks' : team.teamName}{' '}
-									Countdown in action
+									A video of {team.teamName} Countdown in action
 								</video>
-								{team.abbreviation !== 'VAN' && heroVideo === 'hero.mp4' && (
-									<p>
-										<small>
-											Clip from the Canucks version of the countdown
-										</small>
-									</p>
-								)}
 							</div>
 						</div>
 					</div>
