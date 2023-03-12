@@ -52,7 +52,7 @@ export default function TeamLandingPage({ team }: { team: Team }) {
 									width="326"
 									height="706"
 									src={`/hero/${team.abbreviation.toLowerCase()}.mp4`}
-									className="hero-video"
+									className="hero-media"
 									autoPlay
 									playsInline
 									muted
