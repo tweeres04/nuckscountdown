@@ -65,6 +65,7 @@ export default function TeamLandingPage({
 									src={`/hero/${heroVideo}`}
 									className="hero-image"
 									autoPlay
+									playsInline
 									muted
 									loop
 								>
