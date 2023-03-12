@@ -49,8 +49,10 @@ export default function TeamLandingPage({ team }: { team: Team }) {
 							</div>
 							<div className="column has-text-centered">
 								<video
+									width="326"
+									height="706"
 									src={`/hero/${team.abbreviation.toLowerCase()}.mp4`}
-									className="hero-image"
+									className="hero-video"
 									autoPlay
 									playsInline
 									muted
