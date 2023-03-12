@@ -32,6 +32,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				/>
 				<link
 					rel="manifest"
+					id="webAppManifestLink"
 					href={`/api/manifest/${lowercaseTeamAbbreviation}`}
 				/>
 				<link rel="shortcut icon" href={svgLogoPath} />

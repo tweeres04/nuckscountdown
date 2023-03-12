@@ -14,6 +14,7 @@ import getOpposingTeamName from '../../lib/getOpposingTeamName'
 import { linearGradient } from '../../lib/linearGradient'
 import Nav from '../../lib/Nav'
 import { Team } from '../../lib/team'
+import { useUpdateWebAppManifest } from '../../lib/useUpdateWebAppManifest'
 
 export { getStaticPaths } from '../../lib/getStaticPaths'
 export { getStaticProps } from '../../lib/getStaticProps'
@@ -136,6 +137,7 @@ type Props = {
 }
 
 export default function Countdown({ team }: Props) {
+	useUpdateWebAppManifest(team.abbreviation)
 	const { loading, game } = useGame(team)
 	const { abbreviation, teamName, name: fullTeamName } = team
 	const { teams, gameDate: gameDateString, status } = game || {}

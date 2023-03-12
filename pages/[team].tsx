@@ -12,18 +12,20 @@ import {
 	getStaticPropsWithHeroVideoUrl,
 	StaticPropsProps,
 } from '../lib/getStaticProps'
+import { useUpdateWebAppManifest } from '../lib/useUpdateWebAppManifest'
 
 export function getStaticProps(props: StaticPropsProps) {
 	return getStaticPropsWithHeroVideoUrl(props)
 }
 
-export default function TeamComponent({
+export default function TeamLandingPage({
 	team,
 	heroVideo,
 }: {
 	team: Team
 	heroVideo: string
 }) {
+	useUpdateWebAppManifest(team.abbreviation)
 	const teamColourClass = getTeamColourClass(team)
 	const teamColours = colours[team.abbreviation.toLowerCase()]
 	const heroClasses = `hero is-halfheight ${teamColourClass}`
@@ -54,7 +56,7 @@ export default function TeamComponent({
 									need to check the schedule. The best way to plan for tonight's
 									game.
 								</p>
-								<Link href={`${paramCase(team.teamName)}/countdown`}>
+								<Link href={`/${paramCase(team.teamName)}/countdown`}>
 									<a className={heroButtonClasses}>Start the countdown →</a>
 								</Link>
 							</div>
