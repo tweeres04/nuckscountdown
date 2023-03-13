@@ -1,9 +1,8 @@
 export type Team = {
 	id: number
-	name: string
+	name: string // full name
 	abbreviation: string
-	team: string
-	teamName: string
+	teamName: string // last name
 	locationName: string
 }
 
@@ -14,5 +13,5 @@ export function teamFactory({
 	teamName,
 	locationName,
 }: Team): Team {
-	return { id, name, abbreviation, team: abbreviation, teamName, locationName }
+	return { id, name, abbreviation, teamName, locationName }
 }

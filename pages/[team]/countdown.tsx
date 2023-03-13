@@ -164,7 +164,7 @@ export default function Countdown({ team }: Props) {
 		<>
 			<Head>
 				<meta name="robots" content="noindex" />
-				<title>{teamName} Countdown</title>
+				<title>{fullTeamName} Countdown</title>
 			</Head>
 			<Nav team={team} pathSuffix="/countdown" />
 			<div

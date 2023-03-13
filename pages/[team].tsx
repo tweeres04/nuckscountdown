@@ -20,8 +20,7 @@ export default function TeamLandingPage({ team }: { team: Team }) {
 		<>
 			<Head>
 				<title>
-					When do the {team.teamName} play next? Find out fast - {team.teamName}{' '}
-					Countdown
+					When do the {team.teamName} play next? - {team.name} Countdown
 				</title>
 			</Head>
 			<Nav team={team} />

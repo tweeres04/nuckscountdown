@@ -6,9 +6,9 @@ import { Team } from '../lib/team'
 import { colours } from '../lib/colours'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-	const team: Team | undefined = pageProps.team
+	const team: Team = pageProps.team
 
-	const lowercaseTeamAbbreviation = team?.abbreviation.toLowerCase()
+	const lowercaseTeamAbbreviation = team.abbreviation.toLowerCase()
 
 	const svgLogoPath = `/logos/${lowercaseTeamAbbreviation}.svg`
 	const pngLogoPath = `/logos/${lowercaseTeamAbbreviation}.png`
@@ -28,7 +28,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				<meta name="theme-color" content={primaryColour} />
 				<meta
 					name="description"
-					content="A slick looking countdown you save to your home screen. Always be amped up for the next game. Loads instantly."
+					content={`The fastest and prettiest way to check the next ${team.name} game.`}
 				/>
 				<link
 					rel="manifest"
@@ -39,7 +39,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				// All the apple bullshit
 				<meta
 					name="apple-mobile-web-app-title"
-					content={`${team?.name} Countdown`}
+					content={`${team.name} Countdown`}
 				/>
 				<link rel="apple-touch-icon" href={pngLogoPath} />
 				<link rel="apple-touch-startup-image" href={pngLogoPath} />
