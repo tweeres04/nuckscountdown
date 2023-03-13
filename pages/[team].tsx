@@ -9,10 +9,8 @@ import { getTeamColourClass } from '../lib/getTeamColourClass'
 
 export { getStaticPaths } from '../lib/getStaticPaths'
 export { getStaticProps } from '../lib/getStaticProps'
-import { useUpdateWebAppManifest } from '../lib/useUpdateWebAppManifest'
 
 export default function TeamLandingPage({ team }: { team: Team }) {
-	useUpdateWebAppManifest(team.abbreviation)
 	const teamColourClass = getTeamColourClass(team)
 	const teamColours = colours[team.abbreviation.toLowerCase()]
 	const heroClasses = `hero is-halfheight ${teamColourClass}`

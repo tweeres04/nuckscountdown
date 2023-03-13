@@ -51,19 +51,14 @@ export default function Nav({ team, pathSuffix = '' }: Props) {
 							<div className="navbar-link">Teams</div>
 							<div className="navbar-dropdown">
 								{sortedTeams.map((team) => (
-									<Link
+									// We can't use client side routing because iOS won't update the web app manifest properly when switching teams
+									<a
+										className="navbar-item"
 										key={team.id}
 										href={`/${paramCase(team.teamName)}${pathSuffix}`}
 									>
-										<a
-											className="navbar-item"
-											onClick={() => {
-												setShowNavMenu(false)
-											}}
-										>
-											{team.name}
-										</a>
-									</Link>
+										{team.name}
+									</a>
 								))}
 							</div>
 						</div>
