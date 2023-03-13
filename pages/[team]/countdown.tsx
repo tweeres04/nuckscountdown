@@ -117,8 +117,6 @@ function useGame(team: Team) {
 			intervalHandleRef.current = window.setInterval(() => {
 				setNow(new Date())
 			}, 1000)
-
-			return cleanup
 		}
 
 		function cleanup() {
@@ -126,6 +124,8 @@ function useGame(team: Team) {
 		}
 
 		fetchGame()
+
+		return cleanup
 	}, [team])
 
 	return { loading, game }
