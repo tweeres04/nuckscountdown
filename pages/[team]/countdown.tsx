@@ -142,7 +142,7 @@ function InstallNotification({
 	deferredInstallPrompt: BeforeInstallPromptEvent
 }) {
 	const [showInstallNotification, setShowInstallNotification] = useState(false)
-	const [isIos, setIsIos] = useState<boolean | null>(null)
+	const [isIos, setIsIos] = useState(false)
 
 	useEffect(() => {
 		const isStandalone = window.matchMedia('(display-mode: standalone)').matches
