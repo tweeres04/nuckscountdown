@@ -167,32 +167,25 @@ function InstallNotification({
 			style={{ position: 'fixed', bottom: 0, width: '100%' }}
 		>
 			<button className="delete"></button>
-			<div className="columns is-multiline is-centered is-mobile">
-				<div className="column is-narrow">
-					<p>
-						Install {team.name} Countdown to your home screen for quick access
-					</p>
+			<p className="has-text-centered">
+				Install {team.name} Countdown to your home screen for quick access
+			</p>
+			{true ? (
+				<div className="has-text-centered mt-3">
+					<button
+						className={`button is-inverted ${getTeamColourClass(team)}`}
+						onClick={() => {
+							deferredInstallPrompt.prompt()
+						}}
+					>
+						Add to home screen
+					</button>
 				</div>
-				{deferredInstallPrompt ? (
-					<div className="column is-narrow">
-						<button
-							className={`button is-inverted ${getTeamColourClass(team)}`}
-							onClick={() => {
-								deferredInstallPrompt.prompt()
-							}}
-						>
-							Add to home screen
-						</button>
-					</div>
-				) : isIos ? (
-					<div className="column is-narrow">
-						<p>
-							Tap the share button <IosShareIcon />, then tap "Add to Home
-							Screen"
-						</p>
-					</div>
-				) : null}
-			</div>
+			) : true ? (
+				<p className="has-text-centered mt-1">
+					Tap the share button <IosShareIcon />, then tap "Add to Home Screen"
+				</p>
+			) : null}
 		</div>
 	) : null
 }
