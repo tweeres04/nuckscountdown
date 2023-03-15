@@ -169,7 +169,7 @@ function InstallNotification({
 			<div className="columns">
 				<div className="column">
 					<p>
-						Install {team.name} Countdown to your home screen for easy access.
+						Install {team.name} Countdown to your home screen for quick access.
 					</p>
 				</div>
 				{deferredInstallPrompt ? (
