@@ -136,6 +136,7 @@ function useGame(team: Team) {
 function InstallNotification({ team }: { team: Team }) {
 	const [showInstallNotification, setShowInstallNotification] = useState(false)
 	const [deferredPrompt, setDeferredPrompt] = useState(null)
+	const [isIos, setIsIos] = useState<boolean | null>(null)
 
 	useEffect(() => {
 		const isStandalone = window.matchMedia('(display-mode: standalone)').matches
@@ -149,6 +150,14 @@ function InstallNotification({ team }: { team: Team }) {
 		})
 	}, [])
 
+	useEffect(() => {
+		setIsIos(
+			/Mobi/.test(window.navigator.userAgent) &&
+				/AppleWebKit/.test(window.navigator.userAgent) &&
+				!/Chrom/.test(window.navigator.userAgent)
+		)
+	}, [])
+
 	return showInstallNotification ? (
 		<div
 			className={`notification ${getTeamColourClass(team)}`}
@@ -158,23 +167,33 @@ function InstallNotification({ team }: { team: Team }) {
 			}}
 		>
 			<button className="delete"></button>
-			<p>
-				Install {team.name} Countdown to your home screen to get to it quickly.
-			</p>
-			{deferredPrompt ? (
-				<button
-					className={`button ${getTeamColourClass(team)}`}
-					onClick={() => {
-						deferredPrompt.prompt()
-					}}
-				>
-					Add to home screen
-				</button>
-			) : (
-				<p>
-					Tap the share button <IosShareIcon />, then tap "Add to Home Screen"
-				</p>
-			)}
+			<div className="columns">
+				<div className="column">
+					<p>
+						Install {team.name} Countdown to your home screen to get to it
+						quickly.
+					</p>
+				</div>
+				{deferredPrompt ? (
+					<div className="column is-narrow">
+						<button
+							className={`button is-inverted ${getTeamColourClass(team)}`}
+							onClick={() => {
+								deferredPrompt.prompt()
+							}}
+						>
+							Add to home screen
+						</button>
+					</div>
+				) : isIos ? (
+					<div className="column is-narrow">
+						<p>
+							Tap the share button <IosShareIcon />, then tap "Add to Home
+							Screen"
+						</p>
+					</div>
+				) : null}
+			</div>
 		</div>
 	) : null
 }
