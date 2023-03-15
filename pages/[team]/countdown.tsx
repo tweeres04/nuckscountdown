@@ -170,8 +170,7 @@ function InstallNotification({ team }: { team: Team }) {
 			<div className="columns">
 				<div className="column">
 					<p>
-						Install {team.name} Countdown to your home screen to get to it
-						quickly.
+						Install {team.name} Countdown to your home screen for easy access.
 					</p>
 				</div>
 				{deferredPrompt ? (
