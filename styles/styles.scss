@@ -41,14 +41,8 @@ $custom-colors: (
 	font-size: 2rem;
 	padding: 2rem;
 	text-align: center;
-	background: linear-gradient(
-		to bottom,
-		#032e54,
-		#118654
-	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	color: white;
-	height: 100vh;
-
+	height: calc(100vh - 52px);
 	.date {
 		margin-top: 1em;
 		font-size: 0.5em;
@@ -80,3 +74,5 @@ $custom-colors: (
 @import 'bulma/sass/elements/content.sass';
 @import 'bulma/sass/helpers/typography.sass';
 @import 'bulma/sass/components/navbar.sass';
+@import 'bulma/sass/elements/notification.sass';
+@import 'bulma/sass/elements/other.sass';

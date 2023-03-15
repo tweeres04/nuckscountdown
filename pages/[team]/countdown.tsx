@@ -14,6 +14,8 @@ import getOpposingTeamName from '../../lib/getOpposingTeamName'
 import { linearGradient } from '../../lib/linearGradient'
 import Nav from '../../lib/Nav'
 import { Team } from '../../lib/team'
+import { getTeamColourClass } from '../../lib/getTeamColourClass'
+import IosShareIcon from '../../lib/IosShareIcon'
 
 export { getStaticPaths } from '../../lib/getStaticPaths'
 export { getStaticProps } from '../../lib/getStaticProps'
@@ -131,6 +133,52 @@ function useGame(team: Team) {
 	return { loading, game }
 }
 
+function InstallNotification({ team }: { team: Team }) {
+	const [showInstallNotification, setShowInstallNotification] = useState(false)
+	const [deferredPrompt, setDeferredPrompt] = useState(null)
+
+	useEffect(() => {
+		const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+		setShowInstallNotification(!isStandalone)
+	}, [])
+
+	useEffect(() => {
+		window.addEventListener('beforeinstallprompt', (e) => {
+			e.preventDefault()
+			setDeferredPrompt(e)
+		})
+	}, [])
+
+	return showInstallNotification ? (
+		<div
+			className={`notification ${getTeamColourClass(team)}`}
+			style={{ position: 'sticky', bottom: 0, width: '100%' }}
+			onClick={() => {
+				setShowInstallNotification(false)
+			}}
+		>
+			<button className="delete"></button>
+			<p>
+				Install {team.name} Countdown to your home screen to get to it quickly.
+			</p>
+			{deferredPrompt ? (
+				<button
+					className={`button ${getTeamColourClass(team)}`}
+					onClick={() => {
+						deferredPrompt.prompt()
+					}}
+				>
+					Add to home screen
+				</button>
+			) : (
+				<p>
+					Tap the share button <IosShareIcon />, then tap "Add to Home Screen"
+				</p>
+			)}
+		</div>
+	) : null
+}
+
 type Props = {
 	team: Team
 }
@@ -191,6 +239,7 @@ export default function Countdown({ team }: Props) {
 					</div>
 				)}
 			</div>
+			<InstallNotification team={team} />
 		</>
 	)
 }
