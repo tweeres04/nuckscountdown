@@ -160,16 +160,16 @@ function InstallNotification({
 	return showInstallNotification ? (
 		<div
 			className={`notification ${getTeamColourClass(team)}`}
-			style={{ position: 'sticky', bottom: 0, width: '100%' }}
 			onClick={() => {
 				setShowInstallNotification(false)
 			}}
+			style={{ position: 'fixed', bottom: 0, width: '100%' }}
 		>
 			<button className="delete"></button>
-			<div className="columns">
-				<div className="column">
+			<div className="columns is-multiline is-centered is-mobile">
+				<div className="column is-narrow">
 					<p>
-						Install {team.name} Countdown to your home screen for quick access.
+						Install {team.name} Countdown to your home screen for quick access
 					</p>
 				</div>
 				{deferredInstallPrompt ? (
