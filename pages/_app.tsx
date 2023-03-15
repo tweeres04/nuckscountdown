@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Script from 'next/script'
 import '../styles/styles.scss'
@@ -5,8 +6,27 @@ import type { AppProps } from 'next/app'
 import { Team } from '../lib/team'
 import { colours } from '../lib/colours'
 
+export interface BeforeInstallPromptEvent extends Event {
+	prompt: () => void
+}
+
+function useDeferredInstallPrompt() {
+	const [deferredPrompt, setDeferredPrompt] =
+		useState<BeforeInstallPromptEvent>()
+	useEffect(() => {
+		window.addEventListener('beforeinstallprompt', (e) => {
+			e.preventDefault()
+			setDeferredPrompt(e as BeforeInstallPromptEvent)
+		})
+	}, [])
+
+	return deferredPrompt
+}
+
 export default function MyApp({ Component, pageProps }: AppProps) {
 	const team: Team | undefined = pageProps.team
+
+	const deferredInstallPrompt = useDeferredInstallPrompt()
 
 	const lowercaseTeamAbbreviation = team?.abbreviation.toLowerCase()
 
@@ -16,6 +36,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 	const { primary: primaryColour } = lowercaseTeamAbbreviation
 		? colours[lowercaseTeamAbbreviation]
 		: { primary: '#000' }
+
+	pageProps = {
+		...pageProps,
+		deferredInstallPrompt,
+	}
 
 	return (
 		<>

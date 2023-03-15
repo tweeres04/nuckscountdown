@@ -16,6 +16,7 @@ import Nav from '../../lib/Nav'
 import { Team } from '../../lib/team'
 import { getTeamColourClass } from '../../lib/getTeamColourClass'
 import IosShareIcon from '../../lib/IosShareIcon'
+import { BeforeInstallPromptEvent } from '../_app'
 
 export { getStaticPaths } from '../../lib/getStaticPaths'
 export { getStaticProps } from '../../lib/getStaticProps'
@@ -133,21 +134,19 @@ function useGame(team: Team) {
 	return { loading, game }
 }
 
-function InstallNotification({ team }: { team: Team }) {
+function InstallNotification({
+	team,
+	deferredInstallPrompt,
+}: {
+	team: Team
+	deferredInstallPrompt: BeforeInstallPromptEvent
+}) {
 	const [showInstallNotification, setShowInstallNotification] = useState(false)
-	const [deferredPrompt, setDeferredPrompt] = useState(null)
 	const [isIos, setIsIos] = useState<boolean | null>(null)
 
 	useEffect(() => {
 		const isStandalone = window.matchMedia('(display-mode: standalone)').matches
 		setShowInstallNotification(!isStandalone)
-	}, [])
-
-	useEffect(() => {
-		window.addEventListener('beforeinstallprompt', (e) => {
-			e.preventDefault()
-			setDeferredPrompt(e)
-		})
 	}, [])
 
 	useEffect(() => {
@@ -173,12 +172,12 @@ function InstallNotification({ team }: { team: Team }) {
 						Install {team.name} Countdown to your home screen for easy access.
 					</p>
 				</div>
-				{deferredPrompt ? (
+				{deferredInstallPrompt ? (
 					<div className="column is-narrow">
 						<button
 							className={`button is-inverted ${getTeamColourClass(team)}`}
 							onClick={() => {
-								deferredPrompt.prompt()
+								deferredInstallPrompt.prompt()
 							}}
 						>
 							Add to home screen
@@ -199,9 +198,10 @@ function InstallNotification({ team }: { team: Team }) {
 
 type Props = {
 	team: Team
+	deferredInstallPrompt: BeforeInstallPromptEvent
 }
 
-export default function Countdown({ team }: Props) {
+export default function Countdown({ team, deferredInstallPrompt }: Props) {
 	const { loading, game } = useGame(team)
 	const { abbreviation, teamName, name: fullTeamName } = team
 	const { teams, gameDate: gameDateString, status } = game || {}
@@ -257,7 +257,10 @@ export default function Countdown({ team }: Props) {
 					</div>
 				)}
 			</div>
-			<InstallNotification team={team} />
+			<InstallNotification
+				team={team}
+				deferredInstallPrompt={deferredInstallPrompt}
+			/>
 		</>
 	)
 }
