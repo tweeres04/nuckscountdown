@@ -164,7 +164,7 @@ function InstallNotification({
 			onClick={() => {
 				setShowInstallNotification(false)
 			}}
-			style={{ position: 'fixed', bottom: 0, width: '100%' }}
+			style={{ position: 'fixed', bottom: 0, width: '100%', marginBottom: 0 }}
 		>
 			<button className="delete"></button>
 			<p className="has-text-centered">
