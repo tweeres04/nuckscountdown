@@ -76,13 +76,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 			{process.env.NODE_ENV === 'production' && (
 				<>
 					{/* <!-- Google tag (gtag.js) --> */}
-					<Script src="https://www.googletagmanager.com/gtag/js?id=G-3CY78LZ9G7"></Script>
+					<Script
+						src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+					></Script>
 					<script
 						dangerouslySetInnerHTML={{
 							__html: `window.dataLayer = window.dataLayer || [];
 									function gtag(){dataLayer.push(arguments);}
 									gtag('js', new Date());
-									gtag('config', 'G-3CY78LZ9G7');`,
+									gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');`,
 						}}
 					></script>
 				</>
