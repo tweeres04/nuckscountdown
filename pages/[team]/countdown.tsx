@@ -170,7 +170,7 @@ function InstallNotification({
 			<p className="has-text-centered">
 				Install {team.name} Countdown to your home screen for quick access
 			</p>
-			{true ? (
+			{deferredInstallPrompt ? (
 				<div className="has-text-centered mt-3">
 					<button
 						className={`button is-inverted ${getTeamColourClass(team)}`}
@@ -181,7 +181,7 @@ function InstallNotification({
 						Add to home screen
 					</button>
 				</div>
-			) : true ? (
+			) : isIos ? (
 				<p className="has-text-centered mt-1">
 					Tap the share button <IosShareIcon />, then tap "Add to Home Screen"
 				</p>
