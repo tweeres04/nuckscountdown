@@ -223,7 +223,6 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 	return (
 		<>
 			<Head>
-				<meta name="robots" content="noindex" />
 				<title>{fullTeamName} Countdown</title>
 			</Head>
 			<Nav team={team} pathSuffix="/countdown" />
