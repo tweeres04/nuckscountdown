@@ -161,12 +161,14 @@ function InstallNotification({
 	return showInstallNotification ? (
 		<div
 			className={`notification ${getTeamColourClass(team)}`}
-			onClick={() => {
-				setShowInstallNotification(false)
-			}}
 			style={{ position: 'fixed', bottom: 0, width: '100%', marginBottom: 0 }}
 		>
-			<button className="delete"></button>
+			<button
+				className="delete"
+				onClick={() => {
+					setShowInstallNotification(false)
+				}}
+			></button>
 			<p className="has-text-centered">
 				Install {team.name} Countdown to your home screen for quick access
 			</p>
