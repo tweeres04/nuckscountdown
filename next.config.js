@@ -3,6 +3,7 @@ const { withSentryConfig } = require('@sentry/nextjs')
 const withPwa = require('next-pwa')({
 	dest: 'public',
 	disable: process.env.NODE_ENV != 'production',
+	publicExcludes: ['!hero/*', '!logos/*', '!sitemap.xml'],
 })
 
 /** @type {import('next').NextConfig} */
