@@ -1,3 +1,5 @@
+const { withSentryConfig } = require('@sentry/nextjs')
+
 const withPwa = require('next-pwa')({
 	dest: 'public',
 	disable: process.env.NODE_ENV != 'production',
@@ -23,4 +25,8 @@ const nextConfig = withPwa({
 	],
 })
 
-module.exports = nextConfig
+module.exports = withSentryConfig(
+	nextConfig,
+	{ silent: true },
+	{ hideSourcemaps: true }
+)
