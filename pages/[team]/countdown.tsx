@@ -185,7 +185,8 @@ function InstallNotification({
 				</div>
 			) : isIos ? (
 				<p className="has-text-centered mt-1">
-					Tap the share button <IosShareIcon />, then tap "Add to Home Screen"
+					Tap the share button (with this icon: <IosShareIcon />
+					), then tap "Add to Home Screen"
 				</p>
 			) : null}
 		</div>
