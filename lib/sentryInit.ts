@@ -1,9 +1,9 @@
-import * as Sentry from '@sentry/nextjs'
+import { init, SentryWebpackPluginOptions } from '@sentry/nextjs'
 
 const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN
 
-export function sentryInit() {
-	Sentry.init({
+export function sentryInit(extraConfig: SentryWebpackPluginOptions) {
+	init({
 		dsn: SENTRY_DSN,
 		// Adjust this value in production, or use tracesSampler for greater control
 		tracesSampleRate: 1.0,
@@ -15,6 +15,6 @@ export function sentryInit() {
 		// If the entire session is not sampled, use the below sample rate to sample
 		// sessions when an error occurs.
 		replaysOnErrorSampleRate: 1.0,
-		integrations: [new Sentry.Replay()],
+		...extraConfig,
 	})
 }
