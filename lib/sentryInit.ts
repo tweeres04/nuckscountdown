@@ -15,5 +15,6 @@ export function sentryInit() {
 		// If the entire session is not sampled, use the below sample rate to sample
 		// sessions when an error occurs.
 		replaysOnErrorSampleRate: 1.0,
+		integrations: [new Sentry.Replay()],
 	})
 }
