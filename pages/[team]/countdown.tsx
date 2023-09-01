@@ -33,7 +33,7 @@ type Game = {
 		abstractGameState: string
 	}
 	gameDate: string
-	gameType: 'PR' | 'R' | string
+	gameType: 'PR' | 'R' | 'P'
 	teams: {
 		away: GameTeam
 		home: GameTeam
@@ -78,7 +78,7 @@ async function getGameFromNhlApi(teamId: number) {
 	const {
 		data: { dates },
 	} = await axios(
-		`https://statsapi.web.nhl.com/api/v1/schedule?startDate=${today}&endDate=${sixMonthsFromNow}&teamId=${teamId}`
+		`https://statsapi.web.nhl.com/api/v1/schedule?startDate=${today}&endDate=${sixMonthsFromNow}&teamId=${teamId}&gameType=R,P`
 	)
 
 	const game = dates.length === 0 ? null : getNextGame(dates)
@@ -244,14 +244,9 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 				/>
 				{loading || <div className="countdown">{countdownString}</div>}
 				{gameDate && (
-					<>
-						<div className="date">
-							{dateFormat(gameDate, 'ddd MMM D, h:mm A')}
-						</div>
-						{gameType === 'PR' ? (
-							<div className="preseason-label">(Preseason)</div>
-						) : null}
-					</>
+					<div className="date">
+						{dateFormat(gameDate, 'ddd MMM D, h:mm A')}
+					</div>
 				)}
 				{opposingTeamName && (
 					<div className="opponent">
