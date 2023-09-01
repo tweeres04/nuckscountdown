@@ -33,6 +33,7 @@ type Game = {
 		abstractGameState: string
 	}
 	gameDate: string
+	gameType: 'PR' | 'R' | string
 	teams: {
 		away: GameTeam
 		home: GameTeam
@@ -201,7 +202,7 @@ type Props = {
 export default function Countdown({ team, deferredInstallPrompt }: Props) {
 	const { loading, game } = useGame(team)
 	const { abbreviation, teamName, name: fullTeamName } = team
-	const { teams, gameDate: gameDateString, status } = game || {}
+	const { teams, gameDate: gameDateString, status, gameType } = game || {}
 	const { abstractGameState } = status || {}
 
 	const gameDate = gameDateString && new Date(gameDateString)
@@ -243,9 +244,14 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 				/>
 				{loading || <div className="countdown">{countdownString}</div>}
 				{gameDate && (
-					<div className="date">
-						{dateFormat(gameDate, 'ddd MMM D, h:mm A')}
-					</div>
+					<>
+						<div className="date">
+							{dateFormat(gameDate, 'ddd MMM D, h:mm A')}
+						</div>
+						{gameType === 'PR' ? (
+							<div className="preseason-label">(Preseason)</div>
+						) : null}
+					</>
 				)}
 				{opposingTeamName && (
 					<div className="opponent">

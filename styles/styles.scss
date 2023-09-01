@@ -43,9 +43,14 @@ $custom-colors: (
 	text-align: center;
 	color: white;
 	height: calc(100vh - 52px);
+
 	.date {
 		margin-top: 1em;
 		font-size: 0.5em;
+	}
+
+	.preseason-label {
+		font-size: 0.4em;
 	}
 
 	.opponent {
