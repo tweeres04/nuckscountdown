@@ -253,6 +253,23 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 						{isHome ? 'vs' : 'at'} {opposingTeamName}
 					</div>
 				)}
+				{!loading && typeof navigator !== 'undefined' && navigator.share ? (
+					<button
+						className={`mt-6 button is-${abbreviation.toLowerCase()} is-inverted is-outlined is-small`}
+						onClick={() => {
+							navigator.share({
+								title: `${fullTeamName} Countdown`,
+								text: `Get pumped for the next ${teamName} game!`,
+								url: `${document.location.href}?utm_source=nhlcountdown&utm_medium=share_button`,
+							})
+						}}
+					>
+						<IosShareIcon
+							style={{ width: '1rem', height: '1rem', marginRight: '0.125rem' }}
+						/>
+						Share
+					</button>
+				) : null}
 			</div>
 			<InstallNotification
 				team={team}
