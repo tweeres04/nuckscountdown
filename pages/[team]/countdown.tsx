@@ -3,10 +3,10 @@ import Head from 'next/head'
 import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import dateFormat from 'date-fns/format'
-import addMonths from 'date-fns/add_months'
-import isPast from 'date-fns/is_past'
+import addMonths from 'date-fns/addMonths'
+import isPast from 'date-fns/isPast'
 import countdown from 'countdown'
-import idbKeyval from 'idb-keyval'
+import { get, set } from 'idb-keyval'
 
 import { colours } from '../../lib/colours'
 
@@ -54,7 +54,7 @@ const strings = {
 	puckDrop: 'Puck is about to drop!',
 	countdown: (teamName: string, gameDate: Date) =>
 		`${countdown(gameDate).toString()} till the ${teamName} play next`,
-	dateFormat: 'YYYY-MM-DD',
+	dateFormat: 'yyyy-MM-dd',
 }
 
 function getNextGame(dates: GameDate[]) {
@@ -82,7 +82,7 @@ async function getGameFromNhlApi(teamId: number) {
 	)
 
 	const game = dates.length === 0 ? null : getNextGame(dates)
-	idbKeyval.set(idbKey(teamId), game)
+	set(idbKey(teamId), game)
 	return game
 }
 
@@ -100,7 +100,7 @@ function useGame(team: Team) {
 
 			const { id: teamId } = team
 
-			idbKeyval.get<Game | null>(idbKey(teamId)).then((game) => {
+			get<Game | null>(idbKey(teamId)).then((game) => {
 				if (!game) {
 					return
 				}
@@ -244,9 +244,7 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 				/>
 				{loading || <div className="countdown">{countdownString}</div>}
 				{gameDate && (
-					<div className="date">
-						{dateFormat(gameDate, 'ddd MMM D, h:mm A')}
-					</div>
+					<div className="date">{dateFormat(gameDate, 'E MMM d, h:mm a')}</div>
 				)}
 				{opposingTeamName && (
 					<div className="opponent">

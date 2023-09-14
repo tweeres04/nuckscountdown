@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Link from 'next/link'
 import { paramCase } from 'change-case'
+import { FeedbackFish } from '@feedback-fish/react'
 
 import { Team } from './team'
 import { teams } from './teams'
@@ -47,6 +47,16 @@ export default function Nav({ team, pathSuffix = '' }: Props) {
 				</div>
 				<div className={menuClasses}>
 					<div className="navbar-start">
+						<FeedbackFish
+							projectId={
+								process.env.NEXT_PUBLIC_FEEDBACK_FISH_PROJECT_ID as string
+							}
+						>
+							{/* For some reason bulma's `is-clickable` helper didn't work here */}
+							<div className="navbar-item" style={{ cursor: 'pointer' }}>
+								Send feedback
+							</div>
+						</FeedbackFish>
 						<div className="navbar-item has-dropdown is-hoverable">
 							<div className="navbar-link">Teams</div>
 							<div className="navbar-dropdown">
