@@ -7,6 +7,7 @@ import addMonths from 'date-fns/addMonths'
 import isPast from 'date-fns/isPast'
 import countdown from 'countdown'
 import { get, set } from 'idb-keyval'
+import { paramCase } from 'change-case'
 
 import { colours } from '../../lib/colours'
 
@@ -228,6 +229,12 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 		<>
 			<Head>
 				<title>{fullTeamName} Countdown</title>
+				<link
+					rel="canonical"
+					href={`https://nhlcountdown.tweeres.ca/${paramCase(
+						teamName
+					)}/countdown`}
+				/>
 			</Head>
 			<Nav team={team} pathSuffix="/countdown" />
 			<div

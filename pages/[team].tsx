@@ -22,6 +22,10 @@ export default function TeamLandingPage({ team }: { team: Team }) {
 				<title>
 					When do the {team.teamName} play next? - {team.name} Countdown
 				</title>
+				<link
+					rel="canonical"
+					href={`https://nhlcountdown.tweeres.ca/${paramCase(team.teamName)}`}
+				/>
 			</Head>
 			<Nav team={team} />
 			<div
@@ -40,8 +44,11 @@ export default function TeamLandingPage({ team }: { team: Team }) {
 									need to check the schedule. The best way to plan for tonight's
 									game.
 								</p>
-								<Link href={`/${paramCase(team.teamName)}/countdown`}>
-									<a className={heroButtonClasses}>Start the countdown →</a>
+								<Link
+									href={`/${paramCase(team.teamName)}/countdown`}
+									className={heroButtonClasses}
+								>
+									Start the countdown →
 								</Link>
 							</div>
 							<div className="column has-text-centered">
