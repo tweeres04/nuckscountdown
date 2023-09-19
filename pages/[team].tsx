@@ -41,8 +41,7 @@ export default function TeamLandingPage({ team }: { team: Team }) {
 								</h1>
 								<p className="subtitle">
 									A fast, pretty web app that counts down to the next game. No
-									need to check the schedule. The best way to plan for tonight's
-									game.
+									need to check the schedule.
 								</p>
 								<Link
 									href={`/${paramCase(team.teamName)}/countdown`}
