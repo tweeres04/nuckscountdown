@@ -1,332 +1,266 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+  <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/canucks</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/ducks</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/coyotes</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/bruins</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/sabres</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/flames</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/hurricanes</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/blackhawks</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/avalanche</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/blue-jackets</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/stars</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/red-wings</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/oilers</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/panthers</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/kings</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/wild</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/canadiens</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/predators</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/devils</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/islanders</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/rangers</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/senators</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/flyers</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/penguins</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/sharks</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/kraken</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/blues</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/lightning</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/maple-leafs</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/golden-knights</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/capitals</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/jets</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/canucks/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/ducks/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/coyotes/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/bruins/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/sabres/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/flames/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/hurricanes/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/blackhawks/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/avalanche/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/blue-jackets/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/stars/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/red-wings/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/oilers/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/panthers/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/kings/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/wild/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/canadiens/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/predators/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/devils/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/islanders/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/rangers/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/senators/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/flyers/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/penguins/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/sharks/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/kraken/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/blues/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/lightning/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/maple-leafs/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/golden-knights/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/capitals/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nhlcountdown.tweeres.ca/jets/countdown</loc>
-  <lastmod>2023-03-18T14:17:43+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/canucks</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/ducks</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/coyotes</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/bruins</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/sabres</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/flames</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/hurricanes</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/blackhawks</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/avalanche</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/blue-jackets</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/stars</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/red-wings</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/oilers</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/panthers</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/kings</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/wild</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/canadiens</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/predators</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/devils</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/islanders</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/rangers</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/senators</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/flyers</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/penguins</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/sharks</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/kraken</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/blues</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/lightning</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/maple-leafs</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/golden-knights</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/capitals</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/jets</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/canucks/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/ducks/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/coyotes/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/bruins/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/sabres/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/flames/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/hurricanes/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/blackhawks/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/avalanche/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/blue-jackets/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/stars/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/red-wings/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/oilers/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/panthers/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/kings/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/wild/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/canadiens/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/predators/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/devils/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/islanders/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/rangers/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/senators/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/flyers/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/penguins/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/sharks/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/kraken/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/blues/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/lightning/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/maple-leafs/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/golden-knights/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/capitals/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://nhlcountdown.tweeres.ca/jets/countdown</loc>
+    <lastmod>2023-09-19T15:05:48+00:00</lastmod>
+  </url>
 
 
 </urlset>
