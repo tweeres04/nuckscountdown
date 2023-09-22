@@ -225,10 +225,12 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 		secondary: 'grey',
 	}
 
+	const title = `${fullTeamName} Countdown`
+
 	return (
 		<>
 			<Head>
-				<title>{fullTeamName} Countdown</title>
+				<title>{title}</title>
 				<link
 					rel="canonical"
 					href={`https://nhlcountdown.tweeres.ca/${paramCase(
