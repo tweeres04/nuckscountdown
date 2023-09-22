@@ -40,8 +40,8 @@ export default function TeamLandingPage({ team }: { team: Team }) {
 									Get pumped for the next {team.teamName} game!
 								</h1>
 								<p className="subtitle">
-									A fast, pretty web app that counts down to the next game. No
-									need to check the schedule.
+									A fast, pretty web app that counts down to the next game.
+									Saves to your home screen for immediate access.
 								</p>
 								<Link
 									href={`/${paramCase(team.teamName)}/countdown`}

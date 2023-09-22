@@ -53,7 +53,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				<meta name="theme-color" content={primaryColour} />
 				<meta
 					name="description"
-					content={`The fastest and prettiest way to check the next ${team?.name} game.`}
+					content={`The fastest and prettiest way to check the next ${team?.name} game. Launches straight from your home screen.`}
 				/>
 				<link
 					rel="manifest"
