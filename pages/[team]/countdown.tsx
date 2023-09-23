@@ -226,6 +226,7 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 	}
 
 	const title = `${fullTeamName} Countdown`
+	const canonicalUrl = `https://nhlcountdown.tweeres.ca/${paramCase(teamName)}/countdown`
 
 	return (
 		<>
@@ -233,10 +234,15 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 				<title>{title}</title>
 				<link
 					rel="canonical"
-					href={`https://nhlcountdown.tweeres.ca/${paramCase(
-						teamName
-					)}/countdown`}
+					href={canonicalUrl}
 				/>
+
+				// OpenGraph
+				<meta property="og:title" content={title} />
+				<meta property="og:type" content="website" />
+				<meta property="og:url" content={canonicalUrl} />
+				<meta property="og:image" content={`/logos/${team.abbreviation.toLowerCase()}`} />
+				// End OpenGraph
 			</Head>
 			<Nav team={team} pathSuffix="/countdown" />
 			<div

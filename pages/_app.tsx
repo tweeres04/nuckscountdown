@@ -42,6 +42,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 		deferredInstallPrompt,
 	}
 
+	const description = `The fastest and prettiest way to check the next ${team?.name} game. Launches instantly from your home screen.`
+
 	return (
 		<>
 			<Head>
@@ -53,7 +55,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				<meta name="theme-color" content={primaryColour} />
 				<meta
 					name="description"
-					content={`The fastest and prettiest way to check the next ${team?.name} game. Launches instantly from your home screen.`}
+					content={description}
 				/>
 				<link
 					rel="manifest"
@@ -71,6 +73,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 				// End apple bullshit
+
+				// OpenGraph
+				<meta property="og:type" content="website" />
+				<meta property="og:image" content={pngLogoPath} />
+				<meta property="og:description" content={description} />
+				<meta property="og:video" content={`/hero/${team?.abbreviation.toLowerCase()}.mp4`} />
+				// End OpenGraph
 			</Head>
 			<Component {...pageProps} />
 			{process.env.NODE_ENV === 'production' && (
