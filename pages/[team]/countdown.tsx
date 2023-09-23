@@ -237,8 +237,6 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 					href={canonicalUrl}
 				/>
 
-				<meta name="robots" content="noindex" />
-
 				// OpenGraph
 				<meta property="og:title" content={title} />
 				<meta property="og:type" content="website" />
