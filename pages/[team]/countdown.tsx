@@ -241,7 +241,6 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 				<meta property="og:title" content={title} />
 				<meta property="og:type" content="website" />
 				<meta property="og:url" content={canonicalUrl} />
-				<meta property="og:image" content={`/logos/${team.abbreviation.toLowerCase()}`} />
 				// End OpenGraph
 			</Head>
 			<Nav team={team} pathSuffix="/countdown" />
