@@ -53,10 +53,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 					content="width=device-width, initial-scale=1, shrink-to-fit=no"
 				/>
 				<meta name="theme-color" content={primaryColour} />
-				<meta
-					name="description"
-					content={description}
-				/>
+				<meta name="description" content={description} />
 				<link
 					rel="manifest"
 					id="webAppManifestLink"
@@ -72,13 +69,17 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				<link rel="apple-touch-startup-image" href={pngLogoPath} />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-				// End apple bullshit
-
 				// OpenGraph
 				<meta property="og:type" content="website" />
-				<meta property="og:image" content={pngLogoPath} />
+				<meta
+					property="og:image"
+					content={`https://nhlcountdown.tweeres.ca${pngLogoPath}`}
+				/>
 				<meta property="og:description" content={description} />
-				<meta property="og:video" content={`/hero/${team?.abbreviation.toLowerCase()}.mp4`} />
+				<meta
+					property="og:video"
+					content={`https://nhlcountdown.tweeres.ca/hero/${team?.abbreviation.toLowerCase()}.mp4`}
+				/>
 				// End OpenGraph
 			</Head>
 			<Component {...pageProps} />
