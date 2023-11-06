@@ -226,17 +226,15 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 	}
 
 	const title = `${fullTeamName} Countdown`
-	const canonicalUrl = `https://nhlcountdown.tweeres.ca/${paramCase(teamName)}/countdown`
+	const canonicalUrl = `https://nhlcountdown.tweeres.ca/${paramCase(
+		teamName
+	)}/countdown`
 
 	return (
 		<>
 			<Head>
 				<title>{title}</title>
-				<link
-					rel="canonical"
-					href={canonicalUrl}
-				/>
-
+				<link rel="canonical" href={canonicalUrl} />
 				// OpenGraph
 				<meta property="og:title" content={title} />
 				<meta property="og:type" content="website" />
@@ -271,7 +269,7 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 						onClick={() => {
 							navigator.share({
 								title: `${fullTeamName} Countdown`,
-								text: `Get pumped for the next ${teamName} game!`,
+								text: countdownString,
 								url: `${document.location.href}?utm_source=nhlcountdown&utm_medium=share_button`,
 							})
 						}}
