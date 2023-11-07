@@ -23,9 +23,33 @@ function useDeferredInstallPrompt() {
 	return deferredPrompt
 }
 
+function useSendDisplayModeToAnalytics() {
+	// From https://web.dev/customize-install/#detect-launch-type
+	function getPWADisplayMode() {
+		const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+		if (document.referrer.startsWith('android-app://')) {
+			return 'twa'
+		} else if (navigator.standalone || isStandalone) {
+			return 'standalone'
+		}
+		return 'browser'
+	}
+
+	useEffect(() => {
+		if (process.env.NODE_ENV === 'production') {
+			const displayMode = getPWADisplayMode()
+
+			gtag('set', 'user_properties', {
+				display_mode: displayMode,
+			})
+		}
+	}, [])
+}
+
 export default function MyApp({ Component, pageProps }: AppProps) {
 	const team: Team | undefined = pageProps.team
 
+	useSendDisplayModeToAnalytics()
 	const deferredInstallPrompt = useDeferredInstallPrompt()
 
 	const lowercaseTeamAbbreviation = team?.abbreviation.toLowerCase()

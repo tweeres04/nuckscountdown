@@ -25,6 +25,7 @@
 	},
 	"devDependencies": {
 		"@types/countdown": "^0.0.9",
+		"@types/gtag.js": "^0.0.18",
 		"@types/node": "20.6.3",
 		"@types/react": "18.2.22",
 		"eslint": "8.49.0",
