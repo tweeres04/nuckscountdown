@@ -1,4 +1,6 @@
-export default function IosShareIcon({ style }) {
+import { CSSProperties } from 'react'
+
+export default function IosShareIcon({ style }: { style?: CSSProperties }) {
 	return (
 		<svg
 			style={style}

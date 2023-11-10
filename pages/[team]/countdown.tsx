@@ -23,30 +23,20 @@ export { getStaticPaths } from '../../lib/getStaticPaths'
 export { getStaticProps } from '../../lib/getStaticProps'
 
 type GameTeam = {
-	team: {
-		id: number
-		name: string
-	}
+	id: number
+	abbrev: string
 }
 
 type Game = {
-	status: {
-		abstractGameState: string
-	}
-	gameDate: string
-	gameType: 'PR' | 'R' | 'P'
-	teams: {
-		away: GameTeam
-		home: GameTeam
-	}
+	gameState: string // 'FUT' | 'OFF'
+	startTimeUTC: string
+	gameType: number // 2 | ...
+	awayTeam: GameTeam
+	homeTeam: GameTeam
 }
 
-type GameDate = {
-	games: Game[]
-}
-
-function idbKey(teamId: number) {
-	return `game-${teamId}`
+function idbKey(teamAbbrev: string) {
+	return `game-${teamAbbrev}`
 }
 
 const strings = {
@@ -58,32 +48,19 @@ const strings = {
 	dateFormat: 'yyyy-MM-dd',
 }
 
-function getNextGame(dates: GameDate[]) {
-	let [
-		{
-			games: [game],
-		},
-	] = dates
-	const {
-		status: { abstractGameState },
-	} = game
-	return abstractGameState === 'Final' ? dates[1] && dates[1].games[0] : game
+function getNextGame(games: Game[]) {
+	let [game] = games
+	const { gameState } = game
+	return gameState === 'FIN' ? games[1] : game
 }
 
-async function getGameFromNhlApi(teamId: number) {
-	const today = dateFormat(new Date(), strings.dateFormat)
-	const sixMonthsFromNow = dateFormat(
-		addMonths(new Date(), 6),
-		strings.dateFormat
-	)
+async function getGameFromNhlApi(teamAbbrev: string) {
 	const {
-		data: { dates },
-	} = await axios(
-		`https://statsapi.web.nhl.com/api/v1/schedule?startDate=${today}&endDate=${sixMonthsFromNow}&teamId=${teamId}&gameType=R,P`
-	)
+		data: { games },
+	} = await axios(`/api/games?team=${teamAbbrev}`)
 
-	const game = dates.length === 0 ? null : getNextGame(dates)
-	set(idbKey(teamId), game)
+	const game = games.length === 0 ? null : getNextGame(games)
+	set(idbKey(teamAbbrev), game)
 	return game
 }
 
@@ -99,14 +76,14 @@ function useGame(team: Team) {
 			setGame(null)
 			cleanup()
 
-			const { id: teamId } = team
+			const { abbreviation } = team
 
-			get<Game | null>(idbKey(teamId)).then((game) => {
+			get<Game | null>(idbKey(abbreviation)).then((game) => {
 				if (!game) {
 					return
 				}
 
-				const gameDate = new Date(game.gameDate)
+				const gameDate = new Date(game.startTimeUTC)
 
 				if (!isPast(gameDate)) {
 					setIsLoading(false)
@@ -114,11 +91,10 @@ function useGame(team: Team) {
 				}
 			})
 
-			// getGameFromNhlApi(teamId)
-			// 	.then((game) => {
-			// 		setIsLoading(false)
-			// 		setGame(game)
-			// 	})
+			getGameFromNhlApi(abbreviation).then((game) => {
+				setIsLoading(false)
+				setGame(game)
+			})
 
 			intervalHandleRef.current = window.setInterval(() => {
 				setNow(new Date())
@@ -203,23 +179,27 @@ type Props = {
 
 export default function Countdown({ team, deferredInstallPrompt }: Props) {
 	const { loading, game } = useGame(team)
-	const { abbreviation, teamName, name: fullTeamName } = team
-	const { teams, gameDate: gameDateString, status, gameType } = game || {}
-	const { abstractGameState } = status || {}
+	const { id, abbreviation, teamName, name: fullTeamName } = team
+	const {
+		awayTeam,
+		homeTeam,
+		startTimeUTC: gameDateString,
+		gameState,
+	} = game || {}
 
 	const gameDate = gameDateString && new Date(gameDateString)
 
 	const countdownString = !game
 		? strings.noGame
-		: abstractGameState === 'Live'
+		: gameState === 'Live'
 		? strings.live(teamName)
-		: abstractGameState === 'Preview' && isPast(gameDate as Date)
+		: gameState === 'Preview' && isPast(gameDate as Date)
 		? strings.puckDrop
 		: strings.countdown(teamName, gameDate as Date)
 
-	const opposingTeamName = getOpposingTeamName(fullTeamName, teams)
+	const opposingTeamName = getOpposingTeamName(id, homeTeam, awayTeam)
 
-	const isHome = game?.teams?.home?.team?.id === team.id
+	const isHome = homeTeam?.id === team.id
 
 	const teamColours = colours[abbreviation.toLowerCase()] || {
 		primary: 'black',
@@ -255,11 +235,7 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 					src={`/logos/${abbreviation.toLowerCase()}.svg`}
 					alt={`${fullTeamName} logo`}
 				/>
-				<div className="countdown">
-					The NHL has changed their scheduling API. Please be patient as I
-					update the site to use the new API.
-				</div>
-				{/* {loading || <div className="countdown">{countdownString}</div>}
+				{loading || <div className="countdown">{countdownString}</div>}
 				{gameDate && (
 					<div className="date">{dateFormat(gameDate, 'E MMM d, h:mm a')}</div>
 				)}
@@ -284,7 +260,7 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 						/>
 						Share
 					</button>
-				) : null} */}
+				) : null}
 			</div>
 			<InstallNotification
 				team={team}
