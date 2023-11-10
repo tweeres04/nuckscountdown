@@ -114,10 +114,11 @@ function useGame(team: Team) {
 				}
 			})
 
-			getGameFromNhlApi(teamId).then((game) => {
-				setIsLoading(false)
-				setGame(game)
-			})
+			// getGameFromNhlApi(teamId)
+			// 	.then((game) => {
+			// 		setIsLoading(false)
+			// 		setGame(game)
+			// 	})
 
 			intervalHandleRef.current = window.setInterval(() => {
 				setNow(new Date())
@@ -254,7 +255,11 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 					src={`/logos/${abbreviation.toLowerCase()}.svg`}
 					alt={`${fullTeamName} logo`}
 				/>
-				{loading || <div className="countdown">{countdownString}</div>}
+				<div className="countdown">
+					The NHL has changed their scheduling API. Please be patient as I
+					update the site to use the new API.
+				</div>
+				{/* {loading || <div className="countdown">{countdownString}</div>}
 				{gameDate && (
 					<div className="date">{dateFormat(gameDate, 'E MMM d, h:mm a')}</div>
 				)}
@@ -279,7 +284,7 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 						/>
 						Share
 					</button>
-				) : null}
+				) : null} */}
 			</div>
 			<InstallNotification
 				team={team}
