@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { format as dateFormat } from 'date-fns'
+import * as Sentry from '@sentry/nextjs'
 
 const isoDateFormatString = 'yyyy-MM-dd'
 
@@ -15,11 +16,23 @@ export default async function handler(
 	)
 
 	if (!response.ok) {
-		// to do log to sentry
 		console.error(response)
+		let responseBody
+		try {
+			responseBody = await response.text()
+		} catch (err) {
+			console.error(err)
+		}
+		Sentry.captureException(new Error('Error fetching from NHL API'), {
+			extra: {
+				headers: response.headers,
+				status: response.status,
+				body: responseBody,
+			},
+		})
 	}
 
 	const json = await response.json()
 
-	return res.json(json)
+	res.json(json)
 }
