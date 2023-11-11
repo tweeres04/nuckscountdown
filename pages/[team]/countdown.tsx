@@ -53,7 +53,7 @@ const strings = {
 function getNextGame(games: Game[]) {
 	let [game] = games
 	const { gameState } = game
-	return gameState === 'FIN' ? games[1] : game
+	return gameState === 'OFF' ? games[1] : game
 }
 
 async function getGameFromNhlApi(teamAbbrev: string) {
