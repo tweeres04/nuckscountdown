@@ -1,18 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { format as dateFormat } from 'date-fns'
 import * as Sentry from '@sentry/nextjs'
-
-const isoDateFormatString = 'yyyy-MM-dd'
 
 export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
 	const teamAbbrev = req.query.team
-	const today = dateFormat(new Date(), isoDateFormatString)
 
 	const response = await fetch(
-		`https://api-web.nhle.com/v1/club-schedule/${teamAbbrev}/week/${today}`
+		`https://api-web.nhle.com/v1/club-schedule/${teamAbbrev}/week/now`
 	)
 
 	if (!response.ok) {
