@@ -3,11 +3,11 @@ import Head from 'next/head'
 import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import dateFormat from 'date-fns/format'
-import addMonths from 'date-fns/addMonths'
 import isPast from 'date-fns/isPast'
 import countdown from 'countdown'
 import { get, set } from 'idb-keyval'
 import { paramCase } from 'change-case'
+import * as Sentry from '@sentry/nextjs'
 
 import { colours } from '../../lib/colours'
 
@@ -55,13 +55,30 @@ function getNextGame(games: Game[]) {
 }
 
 async function getGameFromNhlApi(teamAbbrev: string) {
-	const {
-		data: { games },
-	} = await axios(`/api/games?team=${teamAbbrev}`)
+	try {
+		const {
+			data: { games },
+		} = await axios(`/api/games?team=${teamAbbrev}`)
 
-	const game = games.length === 0 ? null : getNextGame(games)
-	set(idbKey(teamAbbrev), game)
-	return game
+		const game = games.length === 0 ? null : getNextGame(games)
+		set(idbKey(teamAbbrev), game)
+		return game
+	} catch (error) {
+		let context
+		if (error.response) {
+			context = {
+				extra: {
+					headers: error.response.headers,
+					status: error.response.status,
+					body: error.response.data,
+				},
+			}
+		}
+
+		Sentry.captureException(error, context)
+
+		return null
+	}
 }
 
 function useGame(team: Team) {
