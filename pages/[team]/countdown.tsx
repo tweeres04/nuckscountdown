@@ -30,7 +30,7 @@ type GameTeam = {
 }
 
 type Game = {
-	gameState: string // 'FUT' | 'OFF'
+	gameState: string // 'FUT' | 'OFF' | 'LIVE'
 	startTimeUTC: string
 	gameType: number // 2 | ...
 	awayTeam: GameTeam
@@ -210,7 +210,7 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 
 	const countdownString = !game
 		? strings.noGame
-		: gameState === 'Live'
+		: gameState === 'LIVE'
 		? strings.live(teamName)
 		: gameState === 'Preview' && isPast(gameDate as Date)
 		? strings.puckDrop
