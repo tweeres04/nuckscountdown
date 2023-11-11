@@ -8,6 +8,7 @@ import countdown from 'countdown'
 import { get, set } from 'idb-keyval'
 import { paramCase } from 'change-case'
 import * as Sentry from '@sentry/nextjs'
+import { FeedbackFish } from '@feedback-fish/react'
 
 import { colours } from '../../lib/colours'
 
@@ -17,6 +18,7 @@ import Nav from '../../lib/Nav'
 import { Team } from '../../lib/team'
 import { getTeamColourClass } from '../../lib/getTeamColourClass'
 import IosShareIcon from '../../lib/IosShareIcon'
+import CommentIcon from '../../lib/CommentIcon'
 import { BeforeInstallPromptEvent } from '../_app'
 
 export { getStaticPaths } from '../../lib/getStaticPaths'
@@ -262,21 +264,51 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 					</div>
 				)}
 				{!loading && typeof navigator !== 'undefined' && navigator.share ? (
-					<button
-						className={`mt-6 button is-${abbreviation.toLowerCase()} is-inverted is-outlined is-small`}
-						onClick={() => {
-							navigator.share({
-								title: `${fullTeamName} Countdown`,
-								text: countdownString,
-								url: `${document.location.href}?utm_source=nhlcountdown&utm_medium=share_button`,
-							})
-						}}
+					<>
+						<button
+							className={`mt-6 button is-${abbreviation.toLowerCase()} is-inverted is-outlined is-small`}
+							onClick={() => {
+								navigator
+									.share({
+										title: `${fullTeamName} Countdown`,
+										text: countdownString,
+										url: `${document.location.href}?utm_source=nhlcountdown&utm_medium=share_button`,
+									})
+									.catch((err) => {
+										// Swallow so we don't send to sentry
+									})
+							}}
+						>
+							<IosShareIcon
+								style={{
+									width: '1rem',
+									height: '1rem',
+									marginRight: '0.125rem',
+								}}
+							/>
+							Share
+						</button>{' '}
+					</>
+				) : null}
+				{!loading ? (
+					<FeedbackFish
+						projectId={
+							process.env.NEXT_PUBLIC_FEEDBACK_FISH_PROJECT_ID as string
+						}
 					>
-						<IosShareIcon
-							style={{ width: '1rem', height: '1rem', marginRight: '0.125rem' }}
-						/>
-						Share
-					</button>
+						<button
+							className={`mt-6 button is-${abbreviation.toLowerCase()} is-inverted is-outlined is-small`}
+						>
+							<CommentIcon
+								style={{
+									width: '1rem',
+									height: '1rem',
+									marginRight: '0.125rem',
+								}}
+							/>
+							Feedback
+						</button>
+					</FeedbackFish>
 				) : null}
 			</div>
 			<InstallNotification
