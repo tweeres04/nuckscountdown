@@ -30,9 +30,9 @@ type GameTeam = {
 }
 
 type Game = {
-	gameState: string // 'FUT' | 'OFF' | 'LIVE' | 'CRIT' | 'PRE'
+	gameState: string // 'FUT' | 'OFF' | 'LIVE' | 'CRIT' | 'PRE' | 'FINAL'
 	startTimeUTC: string
-	gameType: number // 2 | ...
+	gameType: number // 2 (probably regular season) | ...
 	awayTeam: GameTeam
 	homeTeam: GameTeam
 }
@@ -53,7 +53,7 @@ const strings = {
 function getNextGame(games: Game[]) {
 	let [game] = games
 	const { gameState } = game
-	return gameState === 'OFF' ? games[1] : game
+	return gameState === 'OFF' || gameState === 'FINAL' ? games[1] : game
 }
 
 async function getGameFromNhlApi(teamAbbrev: string) {
