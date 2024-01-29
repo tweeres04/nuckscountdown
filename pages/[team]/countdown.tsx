@@ -42,7 +42,7 @@ function idbKey(teamAbbrev: string) {
 }
 
 const strings = {
-	noGame: 'No game scheduled',
+	noGame: 'No game scheduled this week',
 	live: (teamName: string) => `${teamName} are live!`,
 	puckDrop: 'Puck is about to drop!',
 	countdown: (teamName: string, gameDate: Date) =>
