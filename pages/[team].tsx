@@ -16,19 +16,16 @@ export default function TeamLandingPage({ team }: { team: Team }) {
 	const heroClasses = `hero is-halfheight ${teamColourClass}`
 	const heroButtonClasses = `button is-large is-inverted ${teamColourClass}`
 
-	const title = `When do the ${team.teamName} play next? - ${team.name} Countdown`
-	const canonicalUrl = `https://nhlcountdown.tweeres.ca/${paramCase(team.teamName)}`
+	const title = `When is the next ${team.teamName} game? - ${team.name} Countdown`
+	const canonicalUrl = `https://nhlcountdown.tweeres.ca/${paramCase(
+		team.teamName
+	)}`
 
 	return (
 		<>
 			<Head>
-				<title>
-					{title}
-				</title>
-				<link
-					rel="canonical"
-					href={canonicalUrl}
-				/>
+				<title>{title}</title>
+				<link rel="canonical" href={canonicalUrl} />
 				// OpenGraph
 				<meta property="og:title" content={title} />
 				<meta property="og:type" content="website" />
