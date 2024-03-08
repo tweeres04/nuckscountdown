@@ -1,34 +1,53 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import * as Sentry from '@sentry/nextjs'
+import { kv } from '@vercel/kv'
+import { Game } from '../[team]/countdown'
+
+type NhlResponse = {
+	games: Game[]
+}
 
 export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
 	const teamAbbrev = req.query.team
+	const kvKey = `nhlcountdown:${teamAbbrev}`
 
-	const response = await fetch(
-		`https://api-web.nhle.com/v1/club-schedule/${teamAbbrev}/week/now`
-	)
+	const cachedJson = await kv.get<NhlResponse>(kvKey)
 
-	if (!response.ok) {
-		console.error(response)
-		let responseBody
-		try {
-			responseBody = await response.text()
-		} catch (err) {
-			console.error(err)
+	let nextGame = findNextGame(cachedJson?.games)
+
+	if (!nextGame) {
+		const response = await fetch(
+			`https://api-web.nhle.com/v1/club-schedule/${teamAbbrev}/week/now`
+		)
+
+		if (response.ok) {
+			const json = await response.json()
+			kv.set(kvKey, json)
+			nextGame = findNextGame(json.games)
+		} else {
+			console.error(response)
+			let responseBody
+			try {
+				responseBody = await response.text()
+			} catch (err) {
+				console.error(err)
+			}
+			Sentry.captureException(new Error('Error fetching from NHL API'), {
+				extra: {
+					headers: response.headers,
+					status: response.status,
+					body: responseBody,
+				},
+			})
 		}
-		Sentry.captureException(new Error('Error fetching from NHL API'), {
-			extra: {
-				headers: response.headers,
-				status: response.status,
-				body: responseBody,
-			},
-		})
 	}
 
-	const json = await response.json()
+	res.json(nextGame)
+}
 
-	res.json(json)
+function findNextGame(games?: Game[]) {
+	return games?.find((g) => g.gameState !== 'OFF' && g.gameState !== 'FINAL')
 }

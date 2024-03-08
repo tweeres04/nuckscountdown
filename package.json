@@ -11,6 +11,7 @@
 	"dependencies": {
 		"@feedback-fish/react": "^1.2.2",
 		"@sentry/nextjs": "^7.70.0",
+		"@vercel/kv": "^1.0.1",
 		"axios": "^1.5.0",
 		"bulma": "^0.9.4",
 		"change-case": "^4.1.2",

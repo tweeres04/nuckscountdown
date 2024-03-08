@@ -29,7 +29,7 @@ type GameTeam = {
 	abbrev: string
 }
 
-type Game = {
+export type Game = {
 	gameState: string // 'FUT' | 'OFF' | 'LIVE' | 'CRIT' | 'PRE' | 'FINAL'
 	startTimeUTC: string
 	gameType: number // 2 (probably regular season) | ...
@@ -50,19 +50,10 @@ const strings = {
 	dateFormat: 'yyyy-MM-dd',
 }
 
-function getNextGame(games: Game[]) {
-	let [game] = games
-	const { gameState } = game
-	return gameState === 'OFF' || gameState === 'FINAL' ? games[1] : game
-}
-
 async function getGameFromNhlApi(teamAbbrev: string) {
 	try {
-		const {
-			data: { games },
-		} = await axios(`/api/games?team=${teamAbbrev}`)
+		const { data: game } = await axios(`/api/games?team=${teamAbbrev}`)
 
-		const game = games.length === 0 ? null : getNextGame(games)
 		set(idbKey(teamAbbrev), game)
 		return game
 	} catch (error) {
