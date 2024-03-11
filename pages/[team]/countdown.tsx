@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import dateFormat from 'date-fns/format'
 import isPast from 'date-fns/isPast'
+import isToday from 'date-fns/isToday'
 import countdown from 'countdown'
 import { get, set } from 'idb-keyval'
 import { paramCase } from 'change-case'
@@ -95,7 +96,7 @@ function useGame(team: Team) {
 
 				const gameDate = new Date(game.startTimeUTC)
 
-				if (!isPast(gameDate)) {
+				if (!isPast(gameDate) || isToday(gameDate)) {
 					setIsLoading(false)
 					setGame(game)
 				}

@@ -19,7 +19,14 @@ export default async function handler(
 
 	let nextGame = findNextCachedGame(cachedJson?.games)
 
-	if (!nextGame || isToday(new Date(nextGame.startTimeUTC))) {
+	const nextGameDate = nextGame ? new Date(nextGame.startTimeUTC) : null
+
+	if (
+		!nextGame ||
+		(nextGameDate && // only for type checker
+			isToday(nextGameDate) &&
+			isPast(nextGameDate))
+	) {
 		const response = await fetch(
 			`https://api-web.nhle.com/v1/club-schedule/${teamAbbrev}/week/now`
 		)
