@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import * as Sentry from '@sentry/nextjs'
 import { kv } from '@vercel/kv'
 import { Game } from '../[team]/countdown'
+import { isPast, isToday } from 'date-fns'
 
 type NhlResponse = {
 	games: Game[]
@@ -16,9 +17,9 @@ export default async function handler(
 
 	const cachedJson = await kv.get<NhlResponse>(kvKey)
 
-	let nextGame = findNextGame(cachedJson?.games)
+	let nextGame = findNextCachedGame(cachedJson?.games)
 
-	if (!nextGame) {
+	if (!nextGame || isToday(new Date(nextGame.startTimeUTC))) {
 		const response = await fetch(
 			`https://api-web.nhle.com/v1/club-schedule/${teamAbbrev}/week/now`
 		)
@@ -49,5 +50,16 @@ export default async function handler(
 }
 
 function findNextGame(games?: Game[]) {
-	return games?.find((g) => g.gameState !== 'OFF' && g.gameState !== 'FINAL')
+	return games?.find(liveGameNotOver)
+}
+
+function findNextCachedGame(games?: Game[]) {
+	return games?.find((g) => {
+		const gameDate = new Date(g.startTimeUTC)
+		return isToday(gameDate) || !isPast(gameDate)
+	})
+}
+
+function liveGameNotOver(game: Game) {
+	return game.gameState !== 'OFF' && game.gameState !== 'FINAL'
 }
