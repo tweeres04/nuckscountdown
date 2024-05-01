@@ -185,6 +185,48 @@ function InstallNotification({
 	) : null
 }
 
+function TbdUpdateNotification({ team }: { team: Team }) {
+	const localStorageKey = '2024-05-01 TBD game update dismissed'
+	const now = Date.now()
+	const [show, setShow] = useState(() =>
+		now > new Date(2024, 5, 1).getTime()
+			? false
+			: localStorage.getItem(localStorageKey) === null
+	)
+
+	function hide() {
+		setShow(false)
+		localStorage.setItem(localStorageKey, Date.now().toString())
+	}
+
+	return (
+		<div
+			className={`notification ${getTeamColourClass(
+				team
+			)} is-size-6 has-text-centered`}
+			style={{
+				position: 'fixed',
+				bottom: 0,
+				width: '100%',
+				marginBottom: 0,
+				display: show ? undefined : 'none',
+			}}
+		>
+			<button className="delete" onClick={hide}></button>
+			<p>
+				<strong>Update:</strong> {team.teamName} Countdown shows TBD games
+				properly now
+			</p>
+			<button
+				className={`button is-inverted mt-3 ${getTeamColourClass(team)}`}
+				onClick={hide}
+			>
+				Got it
+			</button>
+		</div>
+	)
+}
+
 type Props = {
 	team: Team
 	deferredInstallPrompt: BeforeInstallPromptEvent
@@ -316,6 +358,7 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 				team={team}
 				deferredInstallPrompt={deferredInstallPrompt}
 			/>
+			{gameIsTbd ? <TbdUpdateNotification team={team} /> : null}
 		</>
 	)
 }
