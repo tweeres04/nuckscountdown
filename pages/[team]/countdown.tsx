@@ -33,9 +33,10 @@ type GameTeam = {
 export type Game = {
 	gameState: string // 'FUT' | 'OFF' | 'LIVE' | 'CRIT' | 'PRE' | 'FINAL'
 	startTimeUTC: string
-	gameType: number // 2 (probably regular season) | ...
+	gameType: number // 2 (probably regular season) | 3 (playoffs) | ...
 	awayTeam: GameTeam
 	homeTeam: GameTeam
+	gameScheduleState: string // 'TBD' | ...
 }
 
 function idbKey(teamAbbrev: string) {
@@ -49,6 +50,7 @@ const strings = {
 	countdown: (teamName: string, gameDate: Date) =>
 		`${countdown(gameDate).toString()} till the ${teamName} play next`,
 	dateFormat: 'yyyy-MM-dd',
+	tbd: 'Game time TBD',
 }
 
 async function getGameFromNhlApi(teamAbbrev: string) {
@@ -196,16 +198,21 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 		homeTeam,
 		startTimeUTC: gameDateString,
 		gameState,
+		gameScheduleState,
 	} = game || {}
+
+	const gameIsTbd = gameScheduleState === 'TBD'
 
 	const gameDate = gameDateString && new Date(gameDateString)
 
 	const countdownString = !game
 		? strings.noGame
-		: gameState === 'LIVE' || gameState === 'CRIT'
+		: gameState === 'LIVE' || gameState === 'CRIT' // in progress
 		? strings.live(teamName)
-		: gameState === 'PRE' && isPast(gameDate as Date)
+		: gameState === 'PRE' && isPast(gameDate as Date) // about to start
 		? strings.puckDrop
+		: gameIsTbd // Game time not set yet
+		? strings.tbd
 		: strings.countdown(teamName, gameDate as Date)
 
 	const opposingTeamName = getOpposingTeamName(id, homeTeam, awayTeam)
@@ -248,7 +255,9 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 				/>
 				{loading || <div className="countdown">{countdownString}</div>}
 				{gameDate && (
-					<div className="date">{dateFormat(gameDate, 'E MMM d, h:mm a')}</div>
+					<div className="date">
+						{dateFormat(gameDate, `E MMM d${gameIsTbd ? '' : ', h:mm a'}`)}
+					</div>
 				)}
 				{opposingTeamName && (
 					<div className="opponent">

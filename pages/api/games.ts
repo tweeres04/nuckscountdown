@@ -25,7 +25,8 @@ export default async function handler(
 		!nextGame ||
 		(nextGameDate && // only for type checker
 			isToday(nextGameDate) &&
-			isPast(nextGameDate))
+			isPast(nextGameDate)) ||
+		nextGame.gameScheduleState === 'TBD'
 	) {
 		const response = await fetch(
 			`https://api-web.nhle.com/v1/club-schedule/${teamAbbrev}/week/now`
