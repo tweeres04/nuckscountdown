@@ -28,10 +28,7 @@ export default function Nav({ team, pathSuffix = '' }: Props) {
 		>
 			<div className="container">
 				<div className="navbar-brand">
-					<a
-						className="navbar-item"
-						href={`/${team ? paramCase(team.teamName) : ''}`}
-					>
+					<a className="navbar-item" href="/">
 						NHL Countdown
 					</a>
 					<a
