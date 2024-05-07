@@ -7,12 +7,12 @@ import { teams } from './teams'
 import { getTeamColourClass } from './getTeamColourClass'
 
 type Props = {
-	team: Team
+	team?: Team
 	pathSuffix?: string
 }
 
 export default function Nav({ team, pathSuffix = '' }: Props) {
-	const teamColourClass = getTeamColourClass(team)
+	const teamColourClass = team ? getTeamColourClass(team) : 'is-black'
 	const sortedTeams = teams.sort((a, b) => (a.name < b.name ? -1 : 1))
 	const [showNavMenu, setShowNavMenu] = useState(false)
 	const navbarClasses = `navbar ${teamColourClass}`
@@ -28,7 +28,10 @@ export default function Nav({ team, pathSuffix = '' }: Props) {
 		>
 			<div className="container">
 				<div className="navbar-brand">
-					<a className="navbar-item" href={`/${paramCase(team.teamName)}`}>
+					<a
+						className="navbar-item"
+						href={`/${team ? paramCase(team.teamName) : ''}`}
+					>
 						NHL Countdown
 					</a>
 					<a
