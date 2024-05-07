@@ -12,18 +12,6 @@ const nextConfig = withPwa({
 	typescript: {
 		ignoreBuildErrors: true,
 	},
-	redirects: async () => [
-		{
-			source: '/',
-			destination: '/canucks',
-			permanent: true,
-		},
-		{
-			source: '/countdown',
-			destination: '/canucks/countdown',
-			permanent: true,
-		},
-	],
 })
 
 module.exports = withSentryConfig(

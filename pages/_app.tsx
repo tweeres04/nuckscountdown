@@ -54,8 +54,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 	const lowercaseTeamAbbreviation = team?.abbreviation.toLowerCase()
 
-	const svgLogoPath = `/logos/${lowercaseTeamAbbreviation}.svg`
-	const pngLogoPath = `/logos/${lowercaseTeamAbbreviation}.png`
+	const svgLogoPath = lowercaseTeamAbbreviation
+		? `/logos/${lowercaseTeamAbbreviation}.svg`
+		: '/countdown.svg'
+	const pngLogoPath = lowercaseTeamAbbreviation
+		? `/logos/${lowercaseTeamAbbreviation}.png`
+		: '/countdown.png'
 
 	const { primary: primaryColour } = lowercaseTeamAbbreviation
 		? colours[lowercaseTeamAbbreviation]
@@ -66,7 +70,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 		deferredInstallPrompt,
 	}
 
-	const description = `The fastest and prettiest way to check the next ${team?.name} game. Launches instantly from your home screen.`
+	const description = `The fastest and prettiest way to check the next ${
+		team ? team.name : 'NHL'
+	} game. Launches instantly from your home screen.`
 
 	return (
 		<>
@@ -78,16 +84,18 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				/>
 				<meta name="theme-color" content={primaryColour} />
 				<meta name="description" content={description} />
-				<link
-					rel="manifest"
-					id="webAppManifestLink"
-					href={`/api/manifest/${lowercaseTeamAbbreviation}`}
-				/>
+				{lowercaseTeamAbbreviation ? (
+					<link
+						rel="manifest"
+						id="webAppManifestLink"
+						href={`/api/manifest/${lowercaseTeamAbbreviation}`}
+					/>
+				) : null}
 				<link rel="shortcut icon" href={svgLogoPath} />
 				// All the apple bullshit
 				<meta
 					name="apple-mobile-web-app-title"
-					content={`${team?.name} Countdown`}
+					content={`${team ? team.name : 'NHL'} Countdown`}
 				/>
 				<link rel="apple-touch-icon" href={pngLogoPath} />
 				<link rel="apple-touch-startup-image" href={pngLogoPath} />
@@ -102,7 +110,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				<meta property="og:description" content={description} />
 				<meta
 					property="og:video"
-					content={`https://nhlcountdown.tweeres.ca/hero/${team?.abbreviation.toLowerCase()}.mp4`}
+					content={`https://nhlcountdown.tweeres.ca/hero/${
+						team ? team.abbreviation.toLowerCase() : 'canucks'
+					}.mp4`}
 				/>
 				// End OpenGraph
 			</Head>
