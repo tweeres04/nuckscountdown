@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Nav from '../lib/Nav'
 import { Dispatch, SetStateAction, useRef, useState } from 'react'
 import { teams } from '../lib/teams'
+import { paramCase } from 'change-case'
 
 function TeamDropdown({
 	open,
@@ -92,7 +93,7 @@ function TeamDropdown({
 						)
 						.map((t) => (
 							<a
-								href={`/${t.teamName.toLowerCase()}/countdown`}
+								href={`/${paramCase(t.teamName)}/countdown`}
 								className="dropdown-item"
 							>
 								{t.name}
