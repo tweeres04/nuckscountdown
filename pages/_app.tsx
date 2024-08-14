@@ -54,12 +54,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 	const lowercaseTeamAbbreviation = team?.abbreviation.toLowerCase()
 
-	const svgLogoPath = lowercaseTeamAbbreviation
-		? `/logos/${lowercaseTeamAbbreviation}.svg`
-		: '/countdown.svg'
+	// const svgLogoPath = lowercaseTeamAbbreviation
+	// 	? `/logos/${lowercaseTeamAbbreviation}.svg`
+	// 	: '/countdown.svg'
 	const pngLogoPath = lowercaseTeamAbbreviation
 		? `/logos/${lowercaseTeamAbbreviation}.png`
-		: '/countdown.png'
+		: '/puck.png'
 
 	const { primary: primaryColour } = lowercaseTeamAbbreviation
 		? colours[lowercaseTeamAbbreviation]
@@ -91,7 +91,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 						href={`/api/manifest/${lowercaseTeamAbbreviation}`}
 					/>
 				) : null}
-				<link rel="shortcut icon" href={svgLogoPath} />
+				<link rel="shortcut icon" href={pngLogoPath} />
 				// All the apple bullshit
 				<meta
 					name="apple-mobile-web-app-title"
