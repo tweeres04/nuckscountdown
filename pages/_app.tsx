@@ -61,6 +61,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 		? `/logos/${lowercaseTeamAbbreviation}.png`
 		: '/puck.png'
 
+	const ogImagePath = lowercaseTeamAbbreviation
+		? `/og/${lowercaseTeamAbbreviation}.png`
+		: '/og/fla.png'
+
 	const { primary: primaryColour } = lowercaseTeamAbbreviation
 		? colours[lowercaseTeamAbbreviation]
 		: { primary: '#000' }
@@ -105,7 +109,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:image"
-					content={`https://nhlcountdown.tweeres.ca${pngLogoPath}`}
+					content={`https://nhlcountdown.tweeres.ca${ogImagePath}`}
 				/>
 				<meta property="og:description" content={description} />
 				<meta
