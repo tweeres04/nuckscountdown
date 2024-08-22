@@ -17,7 +17,7 @@ export default function TeamLandingPage({ team }: { team: Team }) {
 	const heroButtonClasses = `button is-large is-inverted ${teamColourClass}`
 
 	const title = `When is the next ${team.teamName} game? - ${team.name} Countdown`
-	const canonicalUrl = `https://nhlcountdown.tweeres.ca/${paramCase(
+	const canonicalUrl = `https://nhlcountdown.tweeres.com/${paramCase(
 		team.teamName
 	)}`
 

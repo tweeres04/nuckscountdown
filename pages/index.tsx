@@ -121,7 +121,7 @@ export default function Index() {
 	const heroClasses = `hero is-halfheight is-black`
 
 	const title = 'When is the next NHL game? - NHL Countdown'
-	const canonicalUrl = 'https://nhlcountdown.tweeres.ca'
+	const canonicalUrl = 'https://nhlcountdown.tweeres.com'
 
 	return (
 		<>

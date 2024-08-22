@@ -267,7 +267,7 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 	}
 
 	const title = `${fullTeamName} Countdown`
-	const canonicalUrl = `https://nhlcountdown.tweeres.ca/${paramCase(
+	const canonicalUrl = `https://nhlcountdown.tweeres.com/${paramCase(
 		teamName
 	)}/countdown`
 

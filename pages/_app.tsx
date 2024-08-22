@@ -109,12 +109,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:image"
-					content={`https://nhlcountdown.tweeres.ca${ogImagePath}`}
+					content={`https://nhlcountdown.tweeres.com${ogImagePath}`}
 				/>
 				<meta property="og:description" content={description} />
 				<meta
 					property="og:video"
-					content={`https://nhlcountdown.tweeres.ca/hero/${
+					content={`https://nhlcountdown.tweeres.com/hero/${
 						team ? team.abbreviation.toLowerCase() : 'canucks'
 					}.mp4`}
 				/>
