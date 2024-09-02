@@ -72,6 +72,29 @@ export default function Nav({ team, pathSuffix = '' }: Props) {
 								))}
 							</div>
 						</div>
+						<div className="navbar-item has-dropdown is-hoverable">
+							<div className="navbar-link">Other sports</div>
+							<div className="navbar-dropdown">
+								<a
+									className="navbar-item"
+									href="https://nflcountdown.tweeres.com"
+								>
+									NFL Countdown
+								</a>
+								<a
+									className="navbar-item"
+									href="https://mlbcountdown.tweeres.com"
+								>
+									MLB Countdown
+								</a>
+								<a
+									className="navbar-item"
+									href="https://nbacountdown.tweeres.com"
+								>
+									NBA Countdown
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
