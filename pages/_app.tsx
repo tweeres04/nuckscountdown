@@ -74,7 +74,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 		deferredInstallPrompt,
 	}
 
-	const description = `The fastest and prettiest way to check the next ${
+	const description = `The fastest and prettiest way to get pumped for the next ${
 		team ? team.name : 'NHL'
 	} game. Launches instantly from your home screen.`
 
