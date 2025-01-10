@@ -119,6 +119,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 					}.mp4`}
 				/>
 				// End OpenGraph
+				<script src="https://analytics.ahrefs.com/analytics.js" data-key="tgAseXOCr25EjtPoO0MNSw" async></script>
 			</Head>
 			<Component {...pageProps} />
 			{process.env.NODE_ENV === 'production' && (
