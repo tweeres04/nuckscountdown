@@ -124,6 +124,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 					data-key="OR25pSoDpycSw5Y6N2q99Q"
 					async
 				></script>
+				{/* Simple analytics */}
+				<script
+					data-collect-dnt="true"
+					async
+					src="https://scripts.simpleanalyticscdn.com/latest.js"
+				></script>
 			</Head>
 			<Component {...pageProps} />
 			{process.env.NODE_ENV === 'production' && (
