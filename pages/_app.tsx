@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Script from 'next/script'
+import mixpanel from 'mixpanel-browser'
+import * as Sentry from '@sentry/nextjs'
 import '../styles/styles.scss'
 import type { AppProps } from 'next/app'
 import { Team } from '../lib/team'
@@ -42,13 +44,33 @@ function useSendDisplayModeToAnalytics() {
 			gtag('set', 'user_properties', {
 				display_mode: displayMode,
 			})
+			mixpanel.people.set({
+				displayMode,
+			})
 		}
 	}, [])
+}
+
+function useMixpanel() {
+	useEffect(() => {
+		if (process.env.NODE_ENV === 'production') {
+			if (!process.env.NEXT_PUBLIC_MIXPANEL_TOKEN) {
+				Sentry.captureException('No mixpanel token found')
+				return
+			}
+
+			mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN, {
+				autocapture: true,
+				persistence: 'localStorage',
+			})
+		}
+	})
 }
 
 export default function MyApp({ Component, pageProps }: AppProps) {
 	const team: Team | undefined = pageProps.team
 
+	useMixpanel()
 	useSendDisplayModeToAnalytics()
 	const deferredInstallPrompt = useDeferredInstallPrompt()
 
