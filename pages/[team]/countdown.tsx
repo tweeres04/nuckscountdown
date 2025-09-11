@@ -21,6 +21,7 @@ import { getTeamColourClass } from '../../lib/getTeamColourClass'
 import IosShareIcon from '../../lib/IosShareIcon'
 import CommentIcon from '../../lib/CommentIcon'
 import { BeforeInstallPromptEvent } from '../_app'
+import Script from 'next/script'
 
 export { getStaticPaths } from '../../lib/getStaticPaths'
 export { getStaticProps } from '../../lib/getStaticProps'
@@ -227,6 +228,31 @@ function TbdUpdateNotification({ team }: { team: Team }) {
 	)
 }
 
+function TallyForm() {
+	return (
+		<>
+			<Script async src="https://tally.so/widgets/embed.js"></Script>
+			<Script id="tally_config">
+				{`window.TallyConfig = {
+					"formId": "nW4egR",
+					"popup": {
+						"emoji": {
+						"text": "🏒",
+						"animation": "wave"
+						},
+						"open": {
+							"trigger": "time",
+							"ms": 15000
+						},
+						"hideTitle": true,
+						"doNotShowAfterSubmit": true
+					}
+				};`}
+			</Script>
+		</>
+	)
+}
+
 type Props = {
 	team: Team
 	deferredInstallPrompt: BeforeInstallPromptEvent
@@ -359,6 +385,7 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 				deferredInstallPrompt={deferredInstallPrompt}
 			/>
 			{gameIsTbd ? <TbdUpdateNotification team={team} /> : null}
+			<TallyForm />
 		</>
 	)
 }
