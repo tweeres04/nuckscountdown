@@ -58,21 +58,6 @@ export default function Nav({ team, pathSuffix = '' }: Props) {
 							</div>
 						</FeedbackFish>
 						<div className="navbar-item has-dropdown is-hoverable">
-							<div className="navbar-link">Teams</div>
-							<div className="navbar-dropdown">
-								{sortedTeams.map((team) => (
-									// We can't use client side routing because iOS won't update the web app manifest properly when switching teams
-									<a
-										className="navbar-item"
-										key={team.id}
-										href={`/${paramCase(team.teamName)}${pathSuffix}`}
-									>
-										{team.name}
-									</a>
-								))}
-							</div>
-						</div>
-						<div className="navbar-item has-dropdown is-hoverable">
 							<div className="navbar-link">Other sports</div>
 							<div className="navbar-dropdown">
 								<a
@@ -93,6 +78,21 @@ export default function Nav({ team, pathSuffix = '' }: Props) {
 								>
 									NBA Countdown
 								</a>
+							</div>
+						</div>
+						<div className="navbar-item has-dropdown is-hoverable">
+							<div className="navbar-link">Teams</div>
+							<div className="navbar-dropdown">
+								{sortedTeams.map((team) => (
+									// We can't use client side routing because iOS won't update the web app manifest properly when switching teams
+									<a
+										className="navbar-item"
+										key={team.id}
+										href={`/${paramCase(team.teamName)}${pathSuffix}`}
+									>
+										{team.name}
+									</a>
+								))}
 							</div>
 						</div>
 					</div>
