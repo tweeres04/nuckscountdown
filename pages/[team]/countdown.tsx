@@ -332,10 +332,13 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 						{isHome ? 'vs' : 'at'} {opposingTeamName}
 					</div>
 				)}
-				{!loading && typeof navigator !== 'undefined' && navigator.share ? (
-					<>
+				<div
+					className="mt-6"
+					style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+				>
+					{!loading && typeof navigator !== 'undefined' && navigator.share ? (
 						<button
-							className={`mt-6 button is-${abbreviation.toLowerCase()} is-inverted is-outlined is-small`}
+							className={`button is-${abbreviation.toLowerCase()} is-inverted is-outlined is-fullwidth`}
 							onClick={() => {
 								navigator
 									.share({
@@ -356,29 +359,29 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 								}}
 							/>
 							Share
-						</button>{' '}
-					</>
-				) : null}
-				{!loading ? (
-					<FeedbackFish
-						projectId={
-							process.env.NEXT_PUBLIC_FEEDBACK_FISH_PROJECT_ID as string
-						}
-					>
-						<button
-							className={`mt-6 button is-${abbreviation.toLowerCase()} is-inverted is-outlined is-small`}
-						>
-							<CommentIcon
-								style={{
-									width: '1rem',
-									height: '1rem',
-									marginRight: '0.125rem',
-								}}
-							/>
-							Feedback
 						</button>
-					</FeedbackFish>
-				) : null}
+					) : null}
+					{!loading ? (
+						<FeedbackFish
+							projectId={
+								process.env.NEXT_PUBLIC_FEEDBACK_FISH_PROJECT_ID as string
+							}
+						>
+							<button
+								className={`button is-${abbreviation.toLowerCase()} is-inverted is-outlined is-fullwidth`}
+							>
+								<CommentIcon
+									style={{
+										width: '1rem',
+										height: '1rem',
+										marginRight: '0.125rem',
+									}}
+								/>
+								Feedback
+							</button>
+						</FeedbackFish>
+					) : null}
+				</div>
 			</div>
 			<InstallNotification
 				team={team}
