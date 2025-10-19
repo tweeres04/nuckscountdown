@@ -334,7 +334,13 @@ export default function Countdown({ team, deferredInstallPrompt }: Props) {
 				)}
 				<div
 					className="mt-6"
-					style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						gap: '0.5rem',
+						maxWidth: '400px',
+						margin: '0px auto',
+					}}
 				>
 					{!loading && typeof navigator !== 'undefined' && navigator.share ? (
 						<button
