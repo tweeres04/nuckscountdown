@@ -84,8 +84,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 		: '/puck.png'
 
 	const ogImagePath = lowercaseTeamAbbreviation
-		? `/og/${lowercaseTeamAbbreviation}.png`
-		: '/og/fla.png'
+		? `/api/og/${lowercaseTeamAbbreviation}`
+		: '/api/og/fla'
 
 	const { primary: primaryColour } = lowercaseTeamAbbreviation
 		? colours[lowercaseTeamAbbreviation]

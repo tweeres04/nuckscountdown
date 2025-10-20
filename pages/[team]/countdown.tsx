@@ -44,7 +44,7 @@ function idbKey(teamAbbrev: string) {
 	return `game-${teamAbbrev}`
 }
 
-const strings = {
+export const strings = {
 	noGame: 'No game scheduled this week',
 	live: (teamName: string) => `${teamName} are live!`,
 	puckDrop: 'Puck is about to drop!',
